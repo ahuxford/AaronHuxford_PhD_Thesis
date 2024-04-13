@@ -11,14 +11,16 @@ All files associated with Aaron Huxford's PhD Thesis work.
 
 ## JournalPaper_DoubleTJunction
 - Directory with files utilized to publish "A hybrid domain overlapping method for coupling System Thermal Hydraulics and CFD codes"
-- DOI link: https://doi.org/10.1016/j.anucene.2023.109842
+- DOI link:
+  - https://doi.org/10.1016/j.anucene.2023.109842
 - Links to Overleaf LaTeX files:
   - https://www.overleaf.com/read/wmhhdbnfjwpg#1e53c7
   - https://www.overleaf.com/read/rxrgfpwkzpnd#252f28
 
 ## JournalPaper_TALL3D
 - Directory with files utilized to publish "Validation of a Hybrid Domain Overlapping Coupling Between SAM and CFD Against the TALL-3D Transients"
-- DOI link: **Under second round of reviews (as of April 13 2024)**
+- DOI link:
+  - **Under second round of review (as of April 13 2024)**
 - Links to Overleaf LaTeX files:
   - https://www.overleaf.com/read/kvjhqpyrfftv#283a66
   - https://www.overleaf.com/read/frwjzpfgqkmf#01cf59
@@ -31,8 +33,8 @@ All files associated with Aaron Huxford's PhD Thesis work.
 - Directory with files utilized to create coupled STH/CFD videos of several validation efforts.
 - Links to the videos on YouTube (unlisted):
   - Double T-Junction, SAM-NekRS coupling: https://youtu.be/WynSBclF72E
-  - TALL-3D TG03.S301.04, SAM-STARCCM+: https://youtu.be/-BBPfzp9wLs
-  - TALL-3D TG03.S301.03, SAM-STARCCM+: https://youtu.be/HYga87JkSVQ
+  - TALL-3D TG03.S301.04, SAM-STARCCM+ coupling: https://youtu.be/-BBPfzp9wLs
+  - TALL-3D TG03.S301.03, SAM-STARCCM+ coupling: https://youtu.be/HYga87JkSVQ
 
 
 ## FilesTooBigForGithub (not a directory)
