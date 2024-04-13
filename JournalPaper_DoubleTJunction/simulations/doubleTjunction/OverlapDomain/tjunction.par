@@ -1,0 +1,50 @@
+[OCCA]
+backend = CPU
+deviceNumber = LOCAL-RANK
+
+[GENERAL]
+startFrom = rst.fld # load smoothed mesh
+polynomialOrder = 4
+
+writeInterval = 0
+numSteps = 160000
+
+dt = 2.5e-4
+timeStepper = tombo2
+extrapolation = subcycling
+subcyclingsteps = 1
+
+[PROBLEMTYPE]
+equation = incompNS
+stressFormulation = true # required for variable viscosity
+
+[PRESSURE]
+residualTol = 1e-5
+
+[VELOCITY]
+boundaryTypeMap = v, v, outlet, O, W
+residualTol = 1e-6
+density = 997
+viscosity = 0.0008899
+
+[TEMPERATURE]
+solver = none
+boundaryTypeMap = t, t, I, I, I
+
+[SCALAR01] # k
+boundaryTypeMap = t, t, I, I, t
+residualTol = 1e-8
+rho = 997
+diffusivity = 0.0008899
+
+[SCALAR02] # tau
+boundaryTypeMap = t, t, I, I, t
+residualTol = 1e-8
+rho = 997
+diffusivity = 0.0008899
+
+[SCALAR03] # tracer
+boundaryTypeMap = t, t, I, I, I
+residualTol = 1e-8
+rho = 997
+diffusivity = 1e-9

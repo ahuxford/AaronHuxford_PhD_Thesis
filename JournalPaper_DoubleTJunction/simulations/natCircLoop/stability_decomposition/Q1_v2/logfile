@@ -1,0 +1,2054 @@
+
+
+[33m
+*** Warning, This code is deprecated and will be removed in future versions:
+The parameter direction is deprecated.
+Specifying direction+multiapp is deprecated. Specify the to_multi_app and from_multi_app[39m
+
+                 __    ____  _____
+   ____   ___   / /__ / __ \/ ___/
+  / __ \ / _ \ / //_// /_/ /\__ \ 
+ / / / //  __// ,<  / _, _/___/ / 
+/_/ /_/ \___//_/|_|/_/ |_|/____/  v21.1 (5d2c8ab)
+
+COPYRIGHT (c) 2019-2021 UCHICAGO ARGONNE, LLC
+
+MPI tasks: 64
+
+using NEKRS_HOME: /home/ahuxford/cardinal/install
+using OCCA_CACHE_DIR: /home/ahuxford/cardinal_NekSamInputFiles/problems/steady/NatCircLoop_Victor/Compare/Sep/Q1_v2/.cache/occa/
+
+Initializing device 
+loading linAlg kernels ... active occa mode: Serial
+
+Setting Up...done (20.397s)
+building udf ... 
+-- The CXX compiler identification is GNU 8.3.1
+-- Check for working CXX compiler: /shared/openmpi-4.0.1/gcc-8.3.1/bin/mpicxx
+-- Check for working CXX compiler: /shared/openmpi-4.0.1/gcc-8.3.1/bin/mpicxx - works
+-- Detecting CXX compiler ABI info
+.-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ahuxford/cardinal_NekSamInputFiles/problems/steady/NatCircLoop_Victor/Compare/Sep/Q1_v2/.cache/udf
+[35m[1mScanning dependencies of target UDF[0m
+[100%] Built target UDF
+done (8.02108s)
+building nek ... 
+..............done
+.done (71.7031s)
+
+loading nek ...
+ Reading /home/ahuxford/cardinal_NekSamInputFiles/problems/steady/NatCircLoop_Victor/Compare/Sep/Q1_v2/bentpipe.re2                          
+ reading mesh 
+ reading bc for ifld           1
+ done :: read .re2 file     1.3     sec
+
+generating connectivity (tol=0.2) ...
+ finished in 0.0220572 s
+running parRSB ...
+ finished in 0.0912116 s
+
+ reading mesh 
+ reading curved sides 
+ reading bc for ifld           1
+ done :: read .re2 file     1.3     sec
+
+ setup mesh topology
+   Right-handed check complete for        8550 elements. OK.
+gs_setup: 37075 unique labels shared
+   pairwise times (avg, min, max): 2.17385e-05 1.58755e-05 3.2634e-05
+   crystal router                : 4.23981e-05 4.14421e-05 4.42927e-05
+   all reduce                    : 0.000601952 0.00059932 0.000607031
+   used all_to_all method: pairwise
+   handle bytes (avg, min, max): 103570 95132 106564
+   buffer bytes (avg, min, max): 21543.5 14752 24128
+   setupds time 2.7549E-02 seconds   0  4      171532        8550
+ 
+ nElements   max/min/bal: 134 133 1.01
+ nMessages   max/min/avg: 5 3 4.88
+ msgSize     max/min/avg: 637 11 277.12
+ msgSizeSum  max/min/avg: 1508 922 1346.47
+ 
+ max multiplicity            8
+ done :: setup mesh topology
+  
+ call usrdat
+ done :: usrdat
+
+ generate geometry data
+ done :: generate geometry data
+  
+ call usrdat2
+ done :: usrdat2
+
+  6.9389E-18  1.1102E-16  2.2204E-16  6.9389E-18  5.5511E-17  1.1102E-16 xyz repair 1
+  6.9389E-18  1.1102E-16  2.2204E-16  9.6445E-18  1.5119E-16  2.8542E-16 xyz repair 2
+  6.9389E-18  1.1102E-16  2.2204E-16  7.5315E-18  1.1102E-16  2.7170E-16 xyz repair 3
+  3.4694E-18  5.5511E-17  1.1102E-16  3.4694E-18  5.5511E-17  1.1102E-16 xyz repair 4
+ regenerate geometry data           1
+ done :: regenerate geometry data           1
+  
+ regenerate geometry data           1
+ done :: regenerate geometry data           1
+  
+ verify mesh topology
+  -2.9801545851254534E-002   2.9801545841553125E-002  Xrange
+  -2.9795554962982924E-002  0.36979555496298305       Yrange
+ -0.59979555496298298        1.8244515507181475E-018  Zrange
+ done :: verify mesh topology
+  
+ mesh metrics:
+ GLL grid spacing min/max    : 1.66E-04 2.24E-02
+ scaled Jacobian  min/max/avg: 2.26E-01 1.00E+00 7.26E-01
+ aspect ratio     min/max/avg: 1.19E+00 8.33E+01 1.02E+01
+
+ call usrdat3
+ done :: usrdat3
+
+gridpoints unique/tot:        239932       547200
+dofs vel/pr:                  239932       239932
+ nek setup done in    2.7328E+00 s
+
+ set initial conditions
+ Checking restart options: rst.fld                                                                                                                             
+ nekuic (1) for ifld            1
+ nekuic (1) for ifld            2
+ nekuic (1) for ifld            3
+ nekuic (1) for ifld            4
+ Reading checkpoint data 
+       FILE:/home/ahuxford/cardinal_NekSamInputFiles/problems/steady/NatCircLoop_Victor/Compare/Sep/Q1_v2/rst.fld                               
+
+        0  8.8000E+00 done :: Read checkpoint data
+                              avg data-throughput =    13.7MBps
+                              io-nodes =    64
+
+ xyz min   -0.29802E-01 -0.29796E-01 -0.59980    
+ uvwpt min -0.19722     -0.99126E-01 -0.39191      -3297.7       548.12    
+ PS min      0.0000       0.0000       0.0000       0.0000    
+ xyz max    0.29802E-01  0.36980      0.18245E-17
+ uvwpt max  0.21572      0.37580      0.39589       1257.1       548.12    
+ PS max     0.96240E-02  0.15290       0.0000       0.0000    
+ Restart: recompute geom. factors.
+ regenerate geometry data           1
+ done :: regenerate geometry data           1
+  
+ done :: set initial conditions
+  
+calling nek_userchk ...
+loading mesh from nek ... NboundaryIDs: 3, NboundaryFaces: 1914 done (0.000490714s)
+generating mesh ... Nq: 4 cubNq: 5
+computing geometric factors ... J [3.67719e-09,9.94311e-07] done (0.00811551s)
+loading gs kernels ... 
+....done (15.5726s)
+timing oogs modes: 5.8223e-05s 9.9286e-05s 8.7627e-05s 8.5354e-05s used config: 1.0.0
+min 19% of the local elements are internal
+loading udf kernels ... .done
+timing oogs modes: 0.000218874s 0.000242567s 0.000236231s 0.00023526s used config: 1.0.0
+loading ns kernels ... ......done (30.0034s)
+loading cds kernels ... .done (7.38067s)
+copying solution from nek
+calling udf_setup ... done
+bID 1 -> bcType fixedValue
+bID 2 -> bcType zeroGradient
+bID 3 -> bcType zeroGradient
+allNeumann = 0 
+loading elliptic kernels ... ================= ELLIPTIC SETUP SCALAR00 ===============
+..done (9.4458s)
+timing oogs modes: 5.8492e-05s 9.579e-05s 8.3202e-05s 8.42e-05s used config: 1.0.0
+timing oogs modes: 0.000151812s 0.000154849s 0.0001477s 0.00015213s used config: 2.0.1
+building Jacobi preconditioner ... done (0.00054889s)
+done (9.60201s)
+bID 1 -> bcType fixedValue
+bID 2 -> bcType zeroGradient
+bID 3 -> bcType fixedValue
+allNeumann = 0 
+loading elliptic kernels ... done (0.159842s)
+timing oogs modes: 5.3261e-05s 9.1032e-05s 8.8008e-05s 7.9787e-05s used config: 1.0.0
+timing oogs modes: 0.000143751s 0.00015935s 0.000140845s 0.000138984s used config: 2.1.0
+building Jacobi preconditioner ... done (0.000492165s)
+done (0.28828s)
+bID 1 -> bcType fixedValue
+bID 2 -> bcType zeroGradient
+bID 3 -> bcType fixedValue
+allNeumann = 0 
+loading elliptic kernels ... done (0.106035s)
+timing oogs modes: 5.4154e-05s 9.4523e-05s 8.4638e-05s 8.2703e-05s used config: 1.0.0
+timing oogs modes: 0.0001417s 0.000150835s 0.000136201s 0.000131541s used config: 2.1.0
+building Jacobi preconditioner ... done (0.000438621s)
+done (0.228148s)
+================ ELLIPTIC SETUP VELOCITY ================
+bID 1 -> bcType fixedValue
+bID 2 -> bcType zeroGradient
+bID 3 -> bcType zeroValue
+allNeumann = 0 
+loading elliptic kernels ... ================= ELLIPTIC SETUP SCALAR01 ===============
+================= ELLIPTIC SETUP SCALAR02 ===============
+..done (8.40461s)
+timing oogs modes: 0.000213779s 0.000248123s 0.000229889s 0.000219462s used config: 1.0.0
+timing oogs modes: 0.00066512s 0.000602293s 0.000582072s 0.000571589s used config: 2.1.0
+building Jacobi preconditioner ... done (0.00140305s)
+done (8.56063s)
+================ ELLIPTIC SETUP PRESSURE ================
+allNeumann = 0 
+loading elliptic kernels ... done (0.126492s)
+timing oogs modes: 5.4996e-05s 9.5143e-05s 8.544e-05s 8.3937e-05s used config: 1.0.0
+timing oogs modes: 0.000141752s 0.000153285s 0.000147448s 0.000142733s used config: 1.0.0
+building MG preconditioner ... 
+.loading parALMOND kernels ... done (1.28935s)
+=============BUILDING MULTIGRID LEVEL OF DEGREE 3==================
+timing oogs modes: 4.9291e-05s 9.2919e-05s 8.324e-05s 8.0591e-05s used config: 1.0.0
+timing oogs modes: 0.000132621s 0.000168736s 0.00016212s 0.000164137s used config: 1.0.0
+timing oogs modes: 5.1256e-05s 0.000118269s 0.000122345s 0.000117642s used config: 1.0.0
+estimating maxEigenvalue ... 2.2419 done (0.026108s)
+=============BUILDING MULTIGRID LEVEL OF DEGREE 1==================
+computing geometric factors ... J [3.59836e-09,9.94311e-07] done (0.000720224s)
+loading elliptic MG kernels ... done (1.73755s)
+.timing oogs modes: 1.7796e-05s 2.3797e-05s 2.1137e-05s 2.0152e-05s used config: 1.0.0
+building full FEM matrix ... done.
+done (0.0034673s)
+Setting up AMG...
+
+ Num MPI tasks = 64
+
+ Num OpenMP threads = 1
+
+
+BoomerAMG SETUP PARAMETERS:
+
+ Max levels = 25
+ Num levels = 6
+
+ Strength Threshold = 0.250000
+ Interpolation Truncation Factor = 0.000000
+ Maximum Row Sum Threshold for Dependency Weakening = 0.900000
+
+ Coarsening Type = PMIS 
+ measures are determined locally
+
+
+ No global partition option chosen.
+
+ Interpolation = extended+i interpolation
+
+Operator Matrix Information:
+
+             nonzero            entries/row          row sums
+lev    rows  entries sparse   min  max     avg      min         max
+======================================================================
+  0    9600   103304  0.001     5   19    10.8  -1.547e-07   1.485e-02
+  1    4024    91938  0.006     7   67    22.8  -1.177e-07   2.301e-02
+  2    1257    38289  0.024     8   92    30.5  -7.701e-05   2.144e-02
+  3     331     8209  0.075     7   54    24.8  -6.449e-05   2.706e-02
+  4      41      359  0.214     4   14     8.8  -3.565e-05   3.268e-02
+  5       9       37  0.457     2    5     4.1  -2.268e-05   1.842e-02
+
+
+Interpolation Matrix Information:
+                    entries/row        min        max            row sums
+lev  rows x cols  min  max  avgW     weight      weight       min         max
+================================================================================
+  0  9600 x 4024    1    4   2.5   1.005e-03   1.000e+00   7.051e-01   1.000e+00
+  1  4024 x 1257    1    4   3.2   1.309e-02   1.000e+00   5.863e-01   1.000e+00
+  2  1257 x 331     1    4   3.7   1.702e-02   1.000e+00   3.646e-01   1.006e+00
+  3   331 x 41      1    4   3.5   1.380e-02   1.000e+00   1.976e-01   1.003e+00
+  4    41 x 9       1    3   2.5   1.299e-02   1.000e+00   8.646e-02   1.001e+00
+
+
+     Complexity:    grid = 1.589792
+                operator = 2.343917
+                memory = 2.663508
+
+
+
+
+BoomerAMG SOLVER PARAMETERS:
+
+  Maximum number of cycles:         1 
+  Stopping Tolerance:               0.000000e+00 
+  Cycle type (1 = V, 2 = W, etc.):  1
+
+  Relaxation Parameters:
+   Visiting Grid:                     down   up  coarse
+            Number of sweeps:            1    1     1 
+   Type 0=Jac, 3=hGS, 6=hSGS, 9=GE:     16   16     9 
+   Point types, partial sweeps (1=C, -1=F):
+                  Pre-CG relaxation (down):   0
+                   Post-CG relaxation (up):   0
+                             Coarsest grid:   0
+
+done (0.0179816s)
+--------------------Multigrid Report---------------------
+---------------------------------------------------------
+level|    Type    |                 |     Smoother      |
+     |            |                 |                   |
+---------------------------------------------------------
+   0 |    pMG     |   Matrix-free   | Chebyshev+Schwarz |
+     |            |     Degree  3   |                   |
+   1 |    AMG     |   Matrix        | BoomerAMG         |
+     |            |     Degree  1   |                   |
+---------------------------------------------------------
+done (7.16373s)
+done (10.4154s)
+copying solution to nek
+
+settings:
+
+key: FORMAT,                              value: 1.0
+key: ELEMENT TYPE,                        value: 12
+key: ELEMENT MAP,                         value: ISOPARAMETRIC
+key: MESH DIMENSION,                      value: 3
+key: NUMBER OF SCALARS,                   value: 3
+key: SCALAR MAXIMUM ITERATIONS,           value: 200
+key: TIME INTEGRATOR,                     value: TOMBO1
+key: MESH INTEGRATION ORDER,              value: 3
+key: SUBCYCLING STEPS,                    value: 0
+key: SUBCYCLING TIME ORDER,               value: 4
+key: SUBCYCLING TIME STAGE NUMBER,        value: 4
+key: CASENAME,                            value: bentpipe
+key: UDF OKL FILE,                        value: bentpipe.oudf
+key: UDF FILE,                            value: bentpipe.udf
+key: DEVICE NUMBER,                       value: LOCAL-RANK
+key: PLATFORM NUMBER,                     value: 0
+key: VERBOSE,                             value: FALSE
+key: ADVECTION,                           value: TRUE
+key: ADVECTION TYPE,                      value: CUBATURE+CONVECTIVE
+key: RESTART FROM FILE,                   value: 1
+key: SOLUTION OUTPUT INTERVAL,            value: 0.000000
+key: SOLUTION OUTPUT CONTROL,             value: STEPS
+key: FILTER STABILIZATION,                value: NONE
+key: START TIME,                          value: 8.800000e+00
+key: VELOCITY MAXIMUM ITERATIONS,         value: 200
+key: VELOCITY BLOCK SOLVER,               value: TRUE
+key: VELOCITY KRYLOV SOLVER,              value: PCG
+key: VELOCITY BASIS,                      value: NODAL
+key: VELOCITY PRECONDITIONER,             value: JACOBI
+key: VELOCITY DISCRETIZATION,             value: CONTINUOUS
+key: STRESSFORMULATION,                   value: TRUE
+key: ELLIPTIC INTEGRATION,                value: NODAL
+key: PRESSURE MAXIMUM ITERATIONS,         value: 200
+key: GALERKIN COARSE MATRIX,              value: FALSE
+key: PRESSURE KRYLOV SOLVER,              value: PGMRES+FLEXIBLE
+key: PRESSURE PRECONDITIONER,             value: MULTIGRID
+key: PRESSURE DISCRETIZATION,             value: CONTINUOUS
+key: PRESSURE BASIS,                      value: NODAL
+key: AMG SOLVER,                          value: BOOMERAMG
+key: PRESSURE PARALMOND CYCLE,            value: VCYCLE
+key: PRESSURE MULTIGRID SMOOTHER,         value: CHEBYSHEV+ASM
+key: PRESSURE MULTIGRID DOWNWARD SMOOTHER,value: ASM
+key: PRESSURE MULTIGRID UPWARD SMOOTHER,  value: ASM
+key: PRESSURE MULTIGRID CHEBYSHEV DEGREE, value: 2
+key: PRESSURE RESIDUAL PROJECTION,        value: TRUE
+key: PRESSURE RESIDUAL PROJECTION VECTORS,value: 10
+key: PRESSURE RESIDUAL PROJECTION START,  value: 5
+key: PARALMOND SMOOTH COARSEST,           value: FALSE
+key: ENABLE FLOATCOMMHALF GS SUPPORT,     value: FALSE
+key: MOVING MESH,                         value: FALSE
+key: ENABLE OVERLAP,                      value: FALSE
+key: THREAD MODEL,                        value: SERIAL
+key: RESTART FILE NAME,                   value: rst.fld
+key: POLYNOMIAL DEGREE,                   value: 3
+key: CUBATURE POLYNOMIAL DEGREE,          value: 4
+key: DT,                                  value: 2.000000e-04
+key: NUMBER TIMESTEPS,                    value: 1000
+key: PRESSURE SOLVER TOLERANCE,           value: 1.000000e-04
+key: VELOCITY INITIAL GUESS DEFAULT,      value: EXTRAPOLATION
+key: VELOCITY SOLVER TOLERANCE,           value: 1.000000e-05
+key: DENSITY,                             value: 7.690200e+02
+key: VISCOSITY,                           value: 9.751200e-05
+key: SCALAR00 FILTER STABILIZATION,       value: NONE
+key: SCALAR00 IS TEMPERATURE,             value: TRUE
+key: SCALAR00 KRYLOV SOLVER,              value: PCG
+key: SCALAR00 INITIAL GUESS DEFAULT,      value: EXTRAPOLATION
+key: SCALAR00 PRECONDITIONER,             value: JACOBI
+key: SCALAR00 SOLVER TOLERANCE,           value: 1.000000e-05
+key: SCALAR00 DIFFUSIVITY,                value: 6.004500e-01
+key: SCALAR00 DENSITY,                    value: 3.875000e+06
+key: SCALAR01 FILTER STABILIZATION,       value: NONE
+key: SCALAR01 KRYLOV SOLVER,              value: PCG
+key: SCALAR01 INITIAL GUESS DEFAULT,      value: EXTRAPOLATION
+key: SCALAR01 PRECONDITIONER,             value: JACOBI
+key: SCALAR01 SOLVER TOLERANCE,           value: 1.000000e-05
+key: SCALAR01 DIFFUSIVITY,                value: 9.751200e-05
+key: SCALAR01 DENSITY,                    value: 7.690200e+02
+key: SCALAR02 FILTER STABILIZATION,       value: NONE
+key: SCALAR02 KRYLOV SOLVER,              value: PCG
+key: SCALAR02 INITIAL GUESS DEFAULT,      value: EXTRAPOLATION
+key: SCALAR02 PRECONDITIONER,             value: JACOBI
+key: SCALAR02 SOLVER TOLERANCE,           value: 1.000000e-05
+key: SCALAR02 DIFFUSIVITY,                value: 9.751200e-05
+key: SCALAR02 DENSITY,                    value: 7.690200e+02
+key: SCALAR BASIS,                        value: NODAL
+key: SCALAR DISCRETIZATION,               value: CONTINUOUS
+key: BUILD ONLY,                          value: FALSE
+key: DATA FILE,                           value: /home/ahuxford/cardinal_NekSamInputFiles/problems/steady/NatCircLoop_Victor/Compare/Sep/Q1_v2/.cache/udf/udf.okl
+key: CI-MODE,                             value: 0
+
+occa memory usage: 0.0342815 GB
+initialization took 191.788 s
+
+
+NekRS mesh mapping to MOOSE:
+---------------------------------------------------------------------
+|              | Order | Boundaries | # Side Elems | # Volume Elems |
+---------------------------------------------------------------------
+| NekRS mesh   |     3 | 1,2,3      |         1914 |           8550 |
+| NekRS mirror |     1 | 1          |           57 |              0 |
+---------------------------------------------------------------------
+[36mCreating MultiApp ExternalApp of type SamApp of level 1 and number 0:[39m
+[36mExternalApp0: [39m
+Add SAM Component: PBOneDFluidComponent pipe2
+Add SAM Component: PBOneDFluidComponent pipe3
+Add SAM Component: PBOneDFluidComponent pipe5
+Add SAM Component: PBOneDFluidComponent pipe6
+Add SAM Component: PBOneDFluidComponent pipe7
+Add SAM Component: PBSingleJunction junction2to3
+Add SAM Component: PBSingleJunction junction5to6
+Add SAM Component: PBSingleJunction junction6to7
+Add SAM Component: PBBranch branch3to5anddeadend
+Add SAM Component: PBOneDFluidComponent pipe_deadend
+Add SAM Component: PBTDV pbtdv
+Add SAM Component: CoupledPPSTDJ NekOutlet
+Add SAM Component: CoupledPPSTDV NekInlet
+Initialize SAM SAMSimulation:
+SAM Version: derived from v0.9.5.1, git commit 27be17c on 2022-05-02
+Create mesh...   Building internal mesh...OK
+Build SAM Displaced Mesh... OK
+[36mExternalApp0: [39m
+[36mExternalApp0: [39m[36m
+[36mExternalApp0: [36m*** Info ***
+[36mExternalApp0: [36mUsing /home/ahuxford/cardinal_NekSamInputFiles/problems/steady/NatCircLoop_Victor/Compare/Sep/Q1_v2/sam_ckpt_cp/0400 for restart.[39m
+Checking system connections... OK
+Add Variables... OK
+Initialize Variable Values... OK
+Add SAM Component Physics... OK
+
+[33m
+*** Warning ***
+The following warning occurred in the object "NekRS_pressureDrop_trans", of type "MultiAppPostprocessorTransfer".
+
+MultiAppTransfer execute_on flags do not match associated to_multi_app execute_on flags[39m
+
+[33m
+*** Warning ***
+The following warning occurred in the object "toNekRS_velocity_trans", of type "MultiAppPostprocessorTransfer".
+
+MultiAppTransfer execute_on flags do not match associated from_multi_app execute_on flags[39m
+Finished Setting Up                                                                      [[33m196.15 s[39m] [[33m  131 MB[39m]
+Framework Information:
+MOOSE Version:           git commit ec34995 on 2022-04-25
+LibMesh Version:         c4ce6d1e397bf58401cf12edf1caa9aa61f0f175
+PETSc Version:           3.16.5
+SLEPc Version:           3.16.2
+Current Time:            Fri May 27 12:18:24 2022
+Executable Timestamp:    Wed May 25 09:07:22 2022
+
+Parallelism:
+  Num Processors:          64
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          2
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 228
+    Local:                 4
+    Min/Max/Avg:           0/4/3
+  Elems:                   
+    Total:                 57
+    Local:                 1
+    Min/Max/Avg:           0/1/0
+  Num Subdomains:          1
+  Num Partitions:          57
+  Partitioner:             metis
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             NekTimeStepper
+  Solver Mode:             Preconditioned JFNK
+
+
+Running App: main
+[36mExternalApp0: [39mParallelism:
+[36mExternalApp0: [39m  Num Processors:          1
+[36mExternalApp0: [39m  Num Threads:             1
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mMesh: 
+[36mExternalApp0: [39m  Parallel Type:           replicated
+[36mExternalApp0: [39m  Mesh Dimension:          1
+[36mExternalApp0: [39m  Spatial Dimension:       3
+[36mExternalApp0: [39m  Nodes:                   61
+[36mExternalApp0: [39m  Elems:                   55
+[36mExternalApp0: [39m  Num Subdomains:          6
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mNonlinear System:
+[36mExternalApp0: [39m  Num DOFs:                195
+[36mExternalApp0: [39m  Num Local DOFs:          195
+[36mExternalApp0: [39m  Variables:               { "branch3to5anddeadend:pressure" "branch3to5anddeadend:temperature" "branch3to5anddeadend:velocity" 
+[36mExternalApp0: [39m                             "junction2to3:pressure" "junction2to3:temperature" ... "junction5to6:temperature" 
+[36mExternalApp0: [39m                             "junction5to6:velocity" "junction6to7:pressure" "junction6to7:temperature" 
+[36mExternalApp0: [39m                             "junction6to7:velocity" } { "pressure" "temperature" "velocity" } 
+[36mExternalApp0: [39m  Finite Element Types:    "SCALAR" "LAGRANGE" 
+[36mExternalApp0: [39m  Approximation Orders:    "FIRST" "FIRST" 
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mAuxiliary System:
+[36mExternalApp0: [39m  Num DOFs:                126
+[36mExternalApp0: [39m  Num Local DOFs:          126
+[36mExternalApp0: [39m  Variables:               "JxW" { "branch3to5anddeadend:rho" "junction2to3:rho" "junction5to6:rho" "junction6to7:rho" 
+[36mExternalApp0: [39m                             } "rho" 
+[36mExternalApp0: [39m  Finite Element Types:    "LAGRANGE" "SCALAR" "LAGRANGE" 
+[36mExternalApp0: [39m  Approximation Orders:    "FIRST" "FIRST" "FIRST" 
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mExecution Information:
+[36mExternalApp0: [39m  Executioner:             Transient
+[36mExternalApp0: [39m  TimeStepper:             ConstantDT
+[36mExternalApp0: [39m  Solver Mode:             Preconditioned JFNK
+[36mExternalApp0: [39m  PETSc Preconditioner:    lu 
+[36mExternalApp0: [39m  MOOSE Preconditioner:    FDP
+[36mExternalApp0: [39m
+[36mExternalApp0: [39m[31mLEGACY MODES ENABLED:[39m
+[36mExternalApp0: [39m This application uses the legacy material output option: material properties are output only on TIMESTEP_END, not INITIAL. To remove this message, set 'use_legacy_material_output' to false in this application. If there are gold output files that contain material property output for which output occurs on INITIAL, then these will generate diffs due to zero values being stored, and these tests should be re-golded.
+[36mExternalApp0: [39m[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mRunning App: ExternalApp0
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 0, time = 0
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mPostprocessor Values:
+[36mExternalApp0: [39m+----------------+-------------------+-------------------+----------------------+-------------------+--------------------+--------------------+-----------------------+--------------------+--------------------+-----------------------+--------------------+----------------+----------------+----------------+-------------------+--------------------+---------------------+------------------+
+[36mExternalApp0: [39m| time           | NekInlet:massflow | NekInlet:pressure | NekInlet:temperature | NekInlet:velocity | NekOutlet:massflow | NekOutlet:pressure | NekOutlet:temperature | NekOutlet:velocity | NekRS_pressureDrop | fromNekRS_temperature | fromNekRS_velocity | mFlow_deadend  | mFlow_out2     | mFlow_out6     | p_inlet_interface | p_outlet_interface | toNekRS_temperature | toNekRS_velocity |
+[36mExternalApp0: [39m+----------------+-------------------+-------------------+----------------------+-------------------+--------------------+--------------------+-----------------------+--------------------+--------------------+-----------------------+--------------------+----------------+----------------+----------------+-------------------+--------------------+---------------------+------------------+
+[36mExternalApp0: [39m|   0.000000e+00 |      5.156680e-01 |      1.501888e+07 |         5.468659e+02 |      2.355209e-01 |       5.156678e-01 |       1.501887e+07 |          5.468659e+02 |       2.355208e-01 |       1.086300e+01 |          5.468659e+02 |       2.355209e-01 |  -2.681363e-07 |   5.156678e-01 |   5.156680e-01 |      1.501888e+07 |       1.501887e+07 |        5.468659e+02 |     2.355209e-01 |
+[36mExternalApp0: [39m+----------------+-------------------+-------------------+----------------------+-------------------+--------------------+--------------------+-----------------------+--------------------+--------------------+-----------------------+--------------------+----------------+----------------+----------------+-------------------+--------------------+---------------------+------------------+
+[36mExternalApp0: [39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mScalar Variable Values:
+[36mExternalApp0: [39m+----------------+-------------------------------+--------------------------+----------------------------------+-------------------------------+-----------------------+------------------+--------------------------+-----------------------+-----------------------+------------------+--------------------------+-----------------------+-----------------------+------------------+--------------------------+-----------------------+
+[36mExternalApp0: [39m| time           | branch3to5anddeadend:pressure | branch3to5anddeadend:rho | branch3to5anddeadend:temperature | branch3to5anddeadend:velocity | junction2to3:pressure | junction2to3:rho | junction2to3:temperature | junction2to3:velocity | junction5to6:pressure | junction5to6:rho | junction5to6:temperature | junction5to6:velocity | junction6to7:pressure | junction6to7:rho | junction6to7:temperature | junction6to7:velocity |
+[36mExternalApp0: [39m+----------------+-------------------------------+--------------------------+----------------------------------+-------------------------------+-----------------------+------------------+--------------------------+-----------------------+-----------------------+------------------+--------------------------+-----------------------+-----------------------+------------------+--------------------------+-----------------------+
+[36mExternalApp0: [39m|   0.000000e+00 |                  1.499998e+07 |             7.694496e+02 |                     5.497484e+02 |                  2.370272e-01 |          1.501130e+07 |     7.694496e+02 |             5.497484e+02 |          2.370271e-01 |          1.500374e+07 |     7.694496e+02 |             5.497484e+02 |          2.370272e-01 |          1.501130e+07 |     7.743705e+02 |             5.468659e+02 |          2.355209e-01 |
+[36mExternalApp0: [39m+----------------+-------------------------------+--------------------------+----------------------------------+-------------------------------+-----------------------+------------------+--------------------------+-----------------------+-----------------------+------------------+--------------------------+-----------------------+-----------------------+------------------+--------------------------+-----------------------+
+[36mExternalApp0: [39m
+[36m
+Starting Transfers on INITIAL To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on INITIAL Are Finished
+[39m
+[36m
+Starting Transfers on INITIAL From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on INITIAL Are Finished
+[39m
+
+[33m
+*** Warning ***
+The following warning occurred in the object "MOOSE Problem", of type "NekRSSeparateDomainProblem".
+
+The start time set on the executioner: 0 does not match the start time set in NekRS's .par file: 8.8. 
+This may happen if you are using a restart file in NekRS.
+
+Setting start time for 'NekRSSeparateDomainProblem' to: 0[39m
+
+[33m
+*** Warning ***
+/home/ahuxford/cardinal_NekSamInputFiles/problems/steady/NatCircLoop_Victor/Compare/Sep/Q1_v2/sam.i:247: unused parameter 'Outputs/print_nonlinear_residuals'
+      Did you mean 'print_linear_residuals'?
+[39m
+
+Time Step 0, time = 0
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+| time           | dP             | inlet_P        | inlet_T        | inlet_V        | outlet_P       | outlet_T       | outlet_V       |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   1.174087e+01 |  -3.285963e+03 |   5.468659e+02 |   2.355209e-01 |  -3.297704e+03 |   5.468659e+02 |   2.341479e-01 |
++----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 1, time = 0.0001, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0001 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 1, time = 0.0001, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m1.063117e+00[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m1.799446e-02[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m1.021664e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m6.974664e-05[39m
+[36mExternalApp0: [39m  temperature: [33m7.441227e-05[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.235468 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 008  resNorm00 5.879300e+00  resNorm0 5.879300e+00  resNorm 6.977112e-05
+  UVW: iter 003  resNorm00 1.847576e+00  resNorm0 1.847576e+00  resNorm 2.563430e-06
+  S00: iter 001  resNorm00 6.293125e-07  resNorm0 6.293125e-07  resNorm 3.783834e-11
+  S01: iter 001  resNorm00 2.596608e-03  resNorm0 2.596608e-03  resNorm 7.312617e-06
+  S02: iter 001  resNorm00 2.803136e-03  resNorm0 2.803136e-03  resNorm 3.369042e-06
+step= 1  t= 1.00000000e-04  dt=1.0e-04  C= 0.08  UVW: 3  P: 8  S: 1  S: 1  S: 1  eTimeStep= 7.87e-02s eTime= 7.87049e-02s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 2, time = 0.0002, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0002 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 2, time = 0.0002, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m2.812700e+01[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m1.613008e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m1.014325e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m6.941208e-05[39m
+[36mExternalApp0: [39m  temperature: [33m7.347907e-05[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.236888 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 005  resNorm00 1.376910e-02  resNorm0 1.376910e-02  resNorm 5.167919e-05
+  UVW: iter 003  resNorm00 9.944228e-01  resNorm0 9.944228e-01  resNorm 1.288497e-06
+  S00: iter 001  resNorm00 3.825072e-03  resNorm0 3.825072e-03  resNorm 1.578729e-07
+  S01: iter 002  resNorm00 3.944435e-03  resNorm0 3.944435e-03  resNorm 3.003196e-08
+  S02: iter 001  resNorm00 1.435655e-03  resNorm0 1.435655e-03  resNorm 1.743010e-06
+step= 2  t= 2.00000000e-04  dt=1.0e-04  C= 0.08  UVW: 3  P: 5  S: 1  S: 2  S: 1  eTimeStep= 5.56e-02s eTime= 1.34294e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 3, time = 0.0003, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0003 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 3, time = 0.0003, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m6.846087e+01[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m1.418664e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m1.233836e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m8.399405e-05[39m
+[36mExternalApp0: [39m  temperature: [33m8.953407e-05[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.234896 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 010  resNorm00 1.012819e-01  resNorm0 1.012819e-01  resNorm 4.957669e-05
+  UVW: iter 003  resNorm00 3.664215e+00  resNorm0 3.664215e+00  resNorm 5.525015e-06
+  S00: iter 001  resNorm00 4.165213e-04  resNorm0 4.165213e-04  resNorm 1.652951e-08
+  S01: iter 002  resNorm00 9.728505e-03  resNorm0 9.728505e-03  resNorm 7.036858e-08
+  S02: iter 001  resNorm00 1.430606e-03  resNorm0 1.430606e-03  resNorm 1.725824e-06
+step= 3  t= 3.00000000e-04  dt=1.0e-04  C= 0.08  UVW: 3  P: 10  S: 1  S: 2  S: 1  eTimeStep= 8.82e-02s eTime= 2.22502e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 4, time = 0.0004, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0004 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 4, time = 0.0004, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m1.117745e+01[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m1.344654e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m1.354966e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m9.225343e-05[39m
+[36mExternalApp0: [39m  temperature: [33m9.843005e-05[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.232562 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 007  resNorm00 3.452312e-02  resNorm0 3.452312e-02  resNorm 5.510861e-05
+  UVW: iter 003  resNorm00 1.027403e-01  resNorm0 1.027403e-01  resNorm 9.405168e-07
+  S00: iter 001  resNorm00 1.461035e-03  resNorm0 1.461035e-03  resNorm 6.138906e-08
+  S01: iter 001  resNorm00 3.285783e-03  resNorm0 3.285783e-03  resNorm 6.949168e-06
+  S02: iter 001  resNorm00 1.370029e-03  resNorm0 1.370029e-03  resNorm 1.745520e-06
+step= 4  t= 4.00000000e-04  dt=1.0e-04  C= 0.08  UVW: 3  P: 7  S: 1  S: 1  S: 1  eTimeStep= 6.96e-02s eTime= 2.92126e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 5, time = 0.0005, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0005 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 5, time = 0.0005, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m1.044535e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m3.305156e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m3.444031e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m2.351995e-04[39m
+[36mExternalApp0: [39m  temperature: [33m2.506443e-04[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.235428 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 010  resNorm00 1.542210e-01  resNorm0 1.542210e-01  resNorm 7.578306e-05
+  UVW: iter 003  resNorm00 5.619478e+00  resNorm0 5.619478e+00  resNorm 8.145695e-06
+  S00: iter 001  resNorm00 6.229163e-03  resNorm0 6.229163e-03  resNorm 2.569157e-07
+  S01: iter 002  resNorm00 6.734137e-03  resNorm0 6.734137e-03  resNorm 2.768372e-08
+  S02: iter 001  resNorm00 1.411270e-03  resNorm0 1.411270e-03  resNorm 1.706608e-06
+step= 5  t= 5.00000000e-04  dt=1.0e-04  C= 0.08  UVW: 3  P: 10  S: 1  S: 2  S: 1  eTimeStep= 8.88e-02s eTime= 3.80921e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 6, time = 0.0006, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0006 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 6, time = 0.0006, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m2.203438e+01[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m4.050870e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m1.814280e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m1.238054e-04[39m
+[36mExternalApp0: [39m  temperature: [33m1.312400e-04[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.239229 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 006  resNorm00 5.681147e-02  resNorm0 4.979402e-02  resNorm 5.155968e-05
+  UVW: iter 003  resNorm00 2.932968e-01  resNorm0 2.932968e-01  resNorm 2.141645e-06
+  S00: iter 001  resNorm00 7.360240e-03  resNorm0 7.360240e-03  resNorm 3.051867e-07
+  S01: iter 001  resNorm00 4.566953e-03  resNorm0 4.566953e-03  resNorm 8.776189e-06
+  S02: iter 001  resNorm00 1.523882e-03  resNorm0 1.523882e-03  resNorm 2.067588e-06
+step= 6  t= 6.00000000e-04  dt=1.0e-04  C= 0.08  UVW: 3  P: 6  S: 1  S: 1  S: 1  eTimeStep= 6.24e-02s eTime= 4.43309e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 7, time = 0.0007, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0007 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 7, time = 0.0007, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m1.586964e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m4.788146e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m2.629815e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m1.792149e-04[39m
+[36mExternalApp0: [39m  temperature: [33m1.911776e-04[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.235144 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 2.341088e-01  resNorm0 1.331242e-03  resNorm 9.155022e-05
+  UVW: iter 004  resNorm00 8.581430e+00  resNorm0 8.581430e+00  resNorm 1.271575e-06
+  S00: iter 001  resNorm00 3.645636e-03  resNorm0 3.645636e-03  resNorm 1.481708e-07
+  S01: iter 002  resNorm00 5.389157e-03  resNorm0 5.389157e-03  resNorm 3.036858e-08
+  S02: iter 001  resNorm00 1.446885e-03  resNorm0 1.446885e-03  resNorm 1.848474e-06
+step= 7  t= 7.00000000e-04  dt=1.0e-04  C= 0.08  UVW: 4  P: 2  S: 1  S: 2  S: 1  eTimeStep= 3.92e-02s eTime= 4.82531e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 8, time = 0.0008, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0008 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 8, time = 0.0008, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m4.363060e+01[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m3.063818e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m3.027122e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m2.073187e-04[39m
+[36mExternalApp0: [39m  temperature: [33m2.186205e-04[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.228998 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 9.732467e-02  resNorm0 4.610477e-04  resNorm 4.858889e-05
+  UVW: iter 003  resNorm00 1.132657e+00  resNorm0 1.132657e+00  resNorm 6.703693e-06
+  S00: iter 001  resNorm00 5.211866e-03  resNorm0 5.211866e-03  resNorm 2.201573e-07
+  S01: iter 002  resNorm00 2.869592e-01  resNorm0 2.869592e-01  resNorm 4.466537e-06
+  S02: iter 001  resNorm00 1.356007e-03  resNorm0 1.356007e-03  resNorm 2.110753e-06
+step= 8  t= 8.00000000e-04  dt=1.0e-04  C= 0.07  UVW: 3  P: 2  S: 1  S: 2  S: 1  eTimeStep= 3.84e-02s eTime= 5.20915e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 9, time = 0.0009, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0009 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 9, time = 0.0009, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m2.401074e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m5.639995e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m5.462693e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m3.737612e-04[39m
+[36mExternalApp0: [39m  temperature: [33m3.953944e-04[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.234763 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 003  resNorm00 3.537100e-01  resNorm0 5.467656e-04  resNorm 3.380509e-05
+  UVW: iter 004  resNorm00 1.305098e+01  resNorm0 1.305098e+01  resNorm 1.958265e-06
+  S00: iter 001  resNorm00 3.055832e-03  resNorm0 3.055832e-03  resNorm 1.330038e-07
+  S01: iter 002  resNorm00 1.086023e-02  resNorm0 1.086023e-02  resNorm 1.062883e-07
+  S02: iter 001  resNorm00 1.394927e-03  resNorm0 1.394927e-03  resNorm 1.819776e-06
+step= 9  t= 9.00000000e-04  dt=1.0e-04  C= 0.08  UVW: 4  P: 3  S: 1  S: 2  S: 1  eTimeStep= 4.58e-02s eTime= 5.66708e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 10, time = 0.001, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.001 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 10, time = 0.001, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m8.343643e+01[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m6.617744e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m6.659003e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m4.541794e-04[39m
+[36mExternalApp0: [39m  temperature: [33m4.844143e-04[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.244634 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 1.673249e-01  resNorm0 5.278246e-04  resNorm 9.186760e-05
+  UVW: iter 004  resNorm00 2.774047e+00  resNorm0 2.774047e+00  resNorm 4.851501e-07
+  S00: iter 001  resNorm00 1.476411e-02  resNorm0 1.476411e-02  resNorm 6.030676e-07
+  S01: iter 002  resNorm00 6.898084e-03  resNorm0 6.898084e-03  resNorm 3.772419e-07
+  S02: iter 001  resNorm00 1.717052e-03  resNorm0 1.717052e-03  resNorm 2.981493e-06
+step= 10  t= 1.00000000e-03  dt=1.0e-04  C= 0.08  UVW: 4  P: 2  S: 1  S: 2  S: 1  eTimeStep= 3.98e-02s eTime= 6.06518e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 11, time = 0.0011, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0011 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 11, time = 0.0011, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m3.617151e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m7.662390e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m7.916199e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m5.414769e-04[39m
+[36mExternalApp0: [39m  temperature: [33m5.728965e-04[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.236593 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 5.324484e-01  resNorm0 3.672431e-04  resNorm 6.990948e-05
+  UVW: iter 004  resNorm00 1.976303e+01  resNorm0 1.976303e+01  resNorm 3.008672e-06
+  S00: iter 001  resNorm00 9.118896e-04  resNorm0 9.118896e-04  resNorm 2.304364e-08
+  S01: iter 001  resNorm00 1.182830e-03  resNorm0 1.182830e-03  resNorm 2.911251e-06
+  S02: iter 001  resNorm00 1.529369e-03  resNorm0 1.529369e-03  resNorm 2.377799e-06
+step= 11  t= 1.10000000e-03  dt=1.0e-04  C= 0.08  UVW: 4  P: 2  S: 1  S: 1  S: 1  eTimeStep= 3.97e-02s eTime= 6.46211e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 12, time = 0.0012, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0012 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 12, time = 0.0012, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m1.540838e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m2.032321e-01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m5.796312e-04[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m3.964997e-04[39m
+[36mExternalApp0: [39m  temperature: [33m4.184275e-04[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.220836 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 2.871137e-01  resNorm0 3.552584e-04  resNorm 5.026822e-05
+  UVW: iter 004  resNorm00 5.824432e+00  resNorm0 5.824432e+00  resNorm 9.807782e-07
+  S00: iter 001  resNorm00 1.892620e-02  resNorm0 1.892620e-02  resNorm 8.012333e-07
+  S01: iter 001  resNorm00 3.682750e-03  resNorm0 3.682750e-03  resNorm 3.211493e-06
+  S02: iter 001  resNorm00 1.470664e-03  resNorm0 1.470664e-03  resNorm 3.509482e-06
+step= 12  t= 1.20000000e-03  dt=1.0e-04  C= 0.07  UVW: 4  P: 2  S: 1  S: 1  S: 1  eTimeStep= 3.99e-02s eTime= 6.86158e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 13, time = 0.0013, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0013 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 13, time = 0.0013, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m5.425312e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m2.123948e+00[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m1.531844e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m1.041334e-03[39m
+[36mExternalApp0: [39m  temperature: [33m1.111553e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.231893 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 001  resNorm00 7.980099e-01  resNorm0 3.268443e-04  resNorm 8.119997e-05
+  UVW: iter 004  resNorm00 2.980036e+01  resNorm0 2.980036e+01  resNorm 4.569192e-06
+  S00: iter 001  resNorm00 2.447454e-02  resNorm0 2.447454e-02  resNorm 1.021358e-06
+  S01: iter 001  resNorm00 1.825812e-03  resNorm0 1.825812e-03  resNorm 3.655340e-06
+  S02: iter 001  resNorm00 1.601045e-03  resNorm0 1.601045e-03  resNorm 2.794964e-06
+step= 13  t= 1.30000000e-03  dt=1.0e-04  C= 0.07  UVW: 4  P: 1  S: 1  S: 1  S: 1  eTimeStep= 3.42e-02s eTime= 7.20339e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 14, time = 0.0014, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0014 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 14, time = 0.0014, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m2.764044e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m2.336073e+00[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m1.291249e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m8.836921e-04[39m
+[36mExternalApp0: [39m  temperature: [33m9.371985e-04[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.256901 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 001  resNorm00 4.890733e-01  resNorm0 2.975372e-04  resNorm 8.559820e-05
+  UVW: iter 004  resNorm00 1.129188e+01  resNorm0 1.129188e+01  resNorm 1.809845e-06
+  S00: iter 001  resNorm00 4.947986e-03  resNorm0 4.947986e-03  resNorm 2.004175e-07
+  S01: iter 001  resNorm00 2.668232e-03  resNorm0 2.668232e-03  resNorm 3.048802e-06
+  S02: iter 001  resNorm00 2.305249e-03  resNorm0 2.305249e-03  resNorm 5.559403e-06
+step= 14  t= 1.40000000e-03  dt=1.0e-04  C= 0.08  UVW: 4  P: 1  S: 1  S: 1  S: 1  eTimeStep= 3.44e-02s eTime= 7.54757e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 15, time = 0.0015, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0015 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 15, time = 0.0015, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m8.099194e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m2.500579e+00[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m2.142472e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m1.460234e-03[39m
+[36mExternalApp0: [39m  temperature: [33m1.549670e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.241965 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 001  resNorm00 1.190888e+00  resNorm0 3.302728e-04  resNorm 6.413014e-05
+  UVW: iter 004  resNorm00 4.472933e+01  resNorm0 4.472933e+01  resNorm 6.965165e-06
+  S00: iter 001  resNorm00 2.725144e-02  resNorm0 2.725144e-02  resNorm 1.194963e-06
+  S01: iter 002  resNorm00 1.450313e-02  resNorm0 1.450313e-02  resNorm 4.675770e-07
+  S02: iter 001  resNorm00 1.953111e-03  resNorm0 1.953111e-03  resNorm 4.421279e-06
+step= 15  t= 1.50000000e-03  dt=1.0e-04  C= 0.08  UVW: 4  P: 1  S: 1  S: 2  S: 1  eTimeStep= 3.38e-02s eTime= 7.88522e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 16, time = 0.0016, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0016 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 16, time = 0.0016, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m4.846914e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m1.821119e+00[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m3.927609e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m2.687820e-03[39m
+[36mExternalApp0: [39m  temperature: [33m2.844736e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.202477 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 008  resNorm00 8.262145e-01  resNorm0 4.602265e-01  resNorm 6.403518e-05
+  UVW: iter 004  resNorm00 2.086319e+01  resNorm0 2.086319e+01  resNorm 3.028298e-06
+  S00: iter 001  resNorm00 7.445360e-02  resNorm0 7.445360e-02  resNorm 3.186513e-06
+  S01: iter 001  resNorm00 2.902073e-03  resNorm0 2.902073e-03  resNorm 3.163084e-06
+  S02: iter 001  resNorm00 2.233974e-03  resNorm0 2.233974e-03  resNorm 7.134500e-06
+step= 16  t= 1.60000000e-03  dt=1.0e-04  C= 0.07  UVW: 4  P: 8  S: 1  S: 1  S: 1  eTimeStep= 7.63e-02s eTime= 8.64823e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 17, time = 0.0017, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0017 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 17, time = 0.0017, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m1.203408e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m3.966857e+00[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m2.606093e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m1.786645e-03[39m
+[36mExternalApp0: [39m  temperature: [33m1.876992e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.222202 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 003  resNorm00 1.769197e+00  resNorm0 1.861233e-03  resNorm 6.980486e-05
+  UVW: iter 005  resNorm00 6.683845e+01  resNorm0 6.683845e+01  resNorm 5.626521e-07
+  S00: iter 001  resNorm00 7.096872e-02  resNorm0 7.096872e-02  resNorm 3.037083e-06
+  S01: iter 001  resNorm00 5.623602e-03  resNorm0 5.623602e-03  resNorm 8.294833e-06
+  S02: iter 001  resNorm00 1.838755e-03  resNorm0 1.838755e-03  resNorm 5.047194e-06
+step= 17  t= 1.70000000e-03  dt=1.0e-04  C= 0.07  UVW: 5  P: 3  S: 1  S: 1  S: 1  eTimeStep= 4.58e-02s eTime= 9.10661e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 18, time = 0.0018, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0018 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 18, time = 0.0018, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m8.340447e+02[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m4.639936e+00[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m2.860823e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m1.909841e-03[39m
+[36mExternalApp0: [39m  temperature: [33m2.114928e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.284237 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 003  resNorm00 1.383127e+00  resNorm0 2.356455e-03  resNorm 3.910368e-05
+  UVW: iter 004  resNorm00 3.726158e+01  resNorm0 3.726158e+01  resNorm 4.513044e-06
+  S00: iter 001  resNorm00 6.548619e-02  resNorm0 6.548619e-02  resNorm 2.735509e-06
+  S01: iter 002  resNorm00 3.356365e-02  resNorm0 3.356365e-02  resNorm 4.232053e-06
+  S02: iter 002  resNorm00 3.897590e-03  resNorm0 3.897590e-03  resNorm 5.258728e-08
+step= 18  t= 1.80000000e-03  dt=1.0e-04  C= 0.08  UVW: 4  P: 3  S: 1  S: 2  S: 2  eTimeStep= 4.57e-02s eTime= 9.56395e-01s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 19, time = 0.0019, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0019 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 19, time = 0.0019, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m1.778522e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m7.219356e+00[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m4.983494e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m3.360722e-03[39m
+[36mExternalApp0: [39m  temperature: [33m3.610555e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.258983 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 003  resNorm00 2.615525e+00  resNorm0 7.014990e-04  resNorm 4.839159e-05
+  UVW: iter 005  resNorm00 9.935937e+01  resNorm0 9.935937e+01  resNorm 8.628451e-07
+  S00: iter 001  resNorm00 3.495795e-02  resNorm0 3.495795e-02  resNorm 1.352633e-06
+  S01: iter 002  resNorm00 1.280799e-02  resNorm0 1.280799e-02  resNorm 1.247664e-06
+  S02: iter 001  resNorm00 3.524166e-03  resNorm0 3.524166e-03  resNorm 9.963374e-06
+step= 19  t= 1.90000000e-03  dt=1.0e-04  C= 0.08  UVW: 5  P: 3  S: 1  S: 2  S: 1  eTimeStep= 4.66e-02s eTime= 1.00303e+00s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 20, time = 0.002, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.002 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 20, time = 0.002, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m1.414316e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m4.195132e+00[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m4.916054e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m3.144986e-03[39m
+[36mExternalApp0: [39m  temperature: [33m3.759961e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.161965 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 2.296441e+00  resNorm0 5.858157e-04  resNorm 8.303398e-05
+  UVW: iter 004  resNorm00 6.500757e+01  resNorm0 6.500757e+01  resNorm 5.550408e-06
+  S00: iter 001  resNorm00 1.652973e-01  resNorm0 1.652973e-01  resNorm 6.879924e-06
+  S01: iter 001  resNorm00 2.622714e-03  resNorm0 2.622714e-03  resNorm 7.714376e-06
+  S02: iter 002  resNorm00 4.568983e-03  resNorm0 4.568983e-03  resNorm 6.615285e-08
+step= 20  t= 2.00000000e-03  dt=1.0e-04  C= 0.07  UVW: 4  P: 2  S: 1  S: 1  S: 2  eTimeStep= 3.98e-02s eTime= 1.04279e+00s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 21, time = 0.0021, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0021 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 21, time = 0.0021, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m2.614792e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m1.070343e+01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m7.377458e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m5.021959e-03[39m
+[36mExternalApp0: [39m  temperature: [33m5.348980e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.192911 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 3.847835e+00  resNorm0 8.311363e-04  resNorm 8.433554e-05
+  UVW: iter 005  resNorm00 1.469981e+02  resNorm0 1.469981e+02  resNorm 1.253723e-06
+  S00: iter 001  resNorm00 2.056167e-01  resNorm0 2.056167e-01  resNorm 8.992827e-06
+  S01: iter 002  resNorm00 1.814929e-02  resNorm0 1.814929e-02  resNorm 3.661256e-07
+  S02: iter 002  resNorm00 4.163212e-03  resNorm0 4.163212e-03  resNorm 8.943748e-08
+step= 21  t= 2.10000000e-03  dt=1.0e-04  C= 0.07  UVW: 5  P: 2  S: 1  S: 2  S: 2  eTimeStep= 4.13e-02s eTime= 1.08410e+00s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 22, time = 0.0022, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0022 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 22, time = 0.0022, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m2.366586e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m9.718983e+00[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m6.754106e-03[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m4.642462e-03[39m
+[36mExternalApp0: [39m  temperature: [33m4.862782e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.343896 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 3.780900e+00  resNorm0 9.142437e-04  resNorm 9.925158e-05
+  UVW: iter 004  resNorm00 1.111840e+02  resNorm0 1.111840e+02  resNorm 6.053686e-06
+  S00: iter 001  resNorm00 1.685079e-01  resNorm0 1.685079e-01  resNorm 7.514797e-06
+  S01: iter 002  resNorm00 1.807022e-01  resNorm0 1.807022e-01  resNorm 3.496189e-06
+  S02: iter 002  resNorm00 7.661446e-03  resNorm0 7.661446e-03  resNorm 9.302944e-08
+step= 22  t= 2.20000000e-03  dt=1.0e-04  C= 0.10  UVW: 4  P: 2  S: 1  S: 2  S: 2  eTimeStep= 4.05e-02s eTime= 1.12460e+00s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 23, time = 0.0023, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0023 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 23, time = 0.0023, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m3.819476e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m1.721710e+01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m1.036827e-02[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m6.986791e-03[39m
+[36mExternalApp0: [39m  temperature: [33m7.590772e-03[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.308581 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 5.628467e+00  resNorm0 1.296215e-03  resNorm 9.548801e-05
+  UVW: iter 005  resNorm00 2.161232e+02  resNorm0 2.161232e+02  resNorm 1.969836e-06
+  S00: iter 001  resNorm00 1.085591e-01  resNorm0 1.085591e-01  resNorm 5.182214e-06
+  S01: iter 002  resNorm00 1.155229e-02  resNorm0 1.155229e-02  resNorm 1.286607e-06
+  S02: iter 002  resNorm00 8.574682e-03  resNorm0 8.574682e-03  resNorm 1.188012e-07
+step= 23  t= 2.30000000e-03  dt=1.0e-04  C= 0.09  UVW: 5  P: 2  S: 1  S: 2  S: 2  eTimeStep= 4.17e-02s eTime= 1.16634e+00s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 24, time = 0.0024, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0024 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 24, time = 0.0024, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m3.920942e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m1.677778e+01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m1.514815e-02[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m9.497364e-03[39m
+[36mExternalApp0: [39m  temperature: [33m1.171474e-02[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.0745262 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 002  resNorm00 6.182068e+00  resNorm0 8.652696e-04  resNorm 9.734915e-05
+  UVW: iter 004  resNorm00 1.876055e+02  resNorm0 1.876055e+02  resNorm 8.650931e-06
+  S00: iter 002  resNorm00 4.050308e-01  resNorm0 4.050308e-01  resNorm 1.304661e-08
+  S01: iter 002  resNorm00 2.345631e-03  resNorm0 2.345631e-03  resNorm 6.197615e-07
+  S02: iter 002  resNorm00 9.911040e-03  resNorm0 9.911040e-03  resNorm 1.194397e-07
+step= 24  t= 2.40000000e-03  dt=1.0e-04  C= 0.06  UVW: 4  P: 2  S: 2  S: 2  S: 2  eTimeStep= 4.13e-02s eTime= 1.20762e+00s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 25, time = 0.0025, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0025 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 25, time = 0.0025, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m5.546138e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m2.122952e+01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m2.167057e-02[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m1.467472e-02[39m
+[36mExternalApp0: [39m  temperature: [33m1.579849e-02[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.110076 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 003  resNorm00 8.191246e+00  resNorm0 1.161508e-03  resNorm 5.082501e-05
+  UVW: iter 005  resNorm00 3.162360e+02  resNorm0 3.162360e+02  resNorm 2.735379e-06
+  S00: iter 002  resNorm00 1.305850e-01  resNorm0 1.305850e-01  resNorm 1.836661e-08
+  S01: iter 002  resNorm00 2.057045e-02  resNorm0 2.057045e-02  resNorm 3.486446e-06
+  S02: iter 002  resNorm00 1.140931e-02  resNorm0 1.140931e-02  resNorm 2.453725e-07
+step= 25  t= 2.50000000e-03  dt=1.0e-04  C= 0.05  UVW: 5  P: 3  S: 2  S: 2  S: 2  eTimeStep= 4.75e-02s eTime= 1.25513e+00s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 26, time = 0.0026, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0026 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 26, time = 0.0026, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m6.375263e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m2.296226e+01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m3.201891e-02[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m2.087997e-02[39m
+[36mExternalApp0: [39m  temperature: [33m2.418842e-02[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.468403 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 011  resNorm00 9.951394e+00  resNorm0 4.815757e+00  resNorm 5.403883e-05
+  UVW: iter 005  resNorm00 3.083825e+02  resNorm0 3.083825e+02  resNorm 1.118835e-06
+  S00: iter 001  resNorm00 4.334006e-01  resNorm0 4.334006e-01  resNorm 8.104198e-06
+  S01: iter 002  resNorm00 2.883361e-02  resNorm0 2.883361e-02  resNorm 2.822252e-06
+  S02: iter 002  resNorm00 1.593412e-02  resNorm0 1.593412e-02  resNorm 1.953652e-07
+step= 26  t= 2.60000000e-03  dt=1.0e-04  C= 0.17  UVW: 5  P: 11  S: 1  S: 2  S: 2  eTimeStep= 9.79e-02s eTime= 1.35304e+00s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 27, time = 0.0027, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0027 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 27, time = 0.0027, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m7.906596e+03[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m4.558724e+01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m2.454581e-02[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  pressure: [33m1.343275e-02[39m
+[36mExternalApp0: [39m  temperature: [33m2.042378e-02[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of 0.44433 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+  P  : iter 006  resNorm00 1.171209e+01  resNorm0 8.286367e-02  resNorm 5.503454e-05
+  UVW: iter 005  resNorm00 4.535880e+02  resNorm0 4.535880e+02  resNorm 4.588300e-06
+  S00: iter 002  resNorm00 4.249062e-01  resNorm0 4.249062e-01  resNorm 4.177650e-08
+  S01: iter 002  resNorm00 3.365847e-02  resNorm0 3.365847e-02  resNorm 1.021879e-06
+  S02: iter 002  resNorm00 2.368675e-02  resNorm0 2.368675e-02  resNorm 2.962982e-07
+step= 27  t= 2.70000000e-03  dt=1.0e-04  C= 0.12  UVW: 5  P: 6  S: 2  S: 2  S: 2  eTimeStep= 6.54e-02s eTime= 1.41845e+00s
+copying solution to nek
+[32m Solve Converged![39m
+
+Time Step 28, time = 0.0028, dt = 0.0001
+[36m
+Backing Up MultiApps on TIMESTEP_BEGIN[39m
+[36mFinished Backing Up MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN To MultiApps[39m
+Beginning PostprocessorTransfer NekRS_pressureDrop_trans
+Finished PostprocessorTransfer NekRS_pressureDrop_trans
+Beginning PostprocessorTransfer fromNekRS_velocity_trans
+Finished PostprocessorTransfer fromNekRS_velocity_trans
+Beginning PostprocessorTransfer fromNekRS_temperature_trans
+Finished PostprocessorTransfer fromNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+[36m
+No Transfers on TIMESTEP_BEGIN To MultiApps
+[39m
+[36m
+Executing MultiApps on TIMESTEP_BEGIN[39m
+[36mSolving MultiApp 'ExternalApp' with target time 0.0028 and dt 0.0001 with auto-advance on[39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mTime Step 28, time = 0.0028, dt = 0.0001
+[36mExternalApp0: [39m 0 Nonlinear |R| = [32m1.039183e+04[39m
+[36mExternalApp0: [39m 1 Nonlinear |R| = [32m4.725999e+01[39m
+[36mExternalApp0: [39m 2 Nonlinear |R| = [32m4.753603e-02[39m
+[36mExternalApp0: [39m[32m Solve Converged![39m
+[36mExternalApp0: [39m
+[36mExternalApp0: [39mOutlier Variable Residual Norms:
+[36mExternalApp0: [39m  temperature: [33m2.885879e-02[39m
+[36mExternalApp0: [39m  velocity: [33m3.431799e-02[39m
+Successfully Solved MultiApp ExternalApp.
+[36mFinished Executing MultiApps on TIMESTEP_BEGIN
+[39m
+[36m
+Starting Transfers on TIMESTEP_BEGIN From MultiApps[39m
+Beginning PostprocessorTransfer toNekRS_velocity_trans
+Finished PostprocessorTransfer toNekRS_velocity_trans
+Beginning PostprocessorTransfer toNekRS_temperature_trans
+Finished PostprocessorTransfer toNekRS_temperature_trans
+[36mTransfers on TIMESTEP_BEGIN Are Finished
+[39m
+Sending velocity of -0.105418 to NekRS boundary 1
+Sending temperature of 546.866 to NekRS boundary 1
+Unreasonable res0Norm!

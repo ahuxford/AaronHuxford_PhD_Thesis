@@ -1,0 +1,56 @@
+//
+// nekRS User Defined File
+//
+
+#include <math.h>
+#include "udf.hpp"
+#include <iostream>
+#include "plugins/RANSktau.hpp"
+
+/* User Functions */
+
+static dfloat rho, mueLam;
+occa::kernel userfKernel;
+
+void userq(nrs_t *nrs, dfloat time, occa::memory o_S, occa::memory o_FS)
+{
+  auto mesh = nrs->cds->mesh[0];
+  cds_t *cds   = nrs->cds;
+
+  RANSktau::updateSourceTerms();
+}
+
+void uservp(nrs_t *nrs, dfloat time, occa::memory o_U, occa::memory o_S,
+            occa::memory o_UProp, occa::memory o_SProp)
+{
+  auto mesh = nrs->cds->mesh[0];
+  cds_t *cds   = nrs->cds;
+
+  RANSktau::updateProperties();
+}
+
+void UDF_LoadKernels(nrs_t *nrs)
+{
+  RANSktau::buildKernel(nrs);
+}
+
+void UDF_Setup(nrs_t *nrs)
+{
+  auto mesh = nrs->cds->mesh[0];
+  cds_t *cds = nrs->cds;
+
+  udf.properties = &uservp;
+  udf.sEqnSource = &userq;
+
+  const int scalarFieldStart = 1;
+  platform->options.getArgs("VISCOSITY", mueLam);
+  platform->options.getArgs("DENSITY", rho);
+  RANSktau::setup(nrs, mueLam, rho, scalarFieldStart);
+
+  std::cout << "Calling UDF_Setup " << std::endl;
+}
+
+void UDF_ExecuteStep(nrs_t *nrs, dfloat time, int tstep)
+{
+
+}

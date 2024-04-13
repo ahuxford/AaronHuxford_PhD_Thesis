@@ -1,0 +1,40 @@
+# Nek5000 parameter file
+[GENERAL]
+stopAt = numSteps
+#startfrom = pipe0.post
+numSteps = 100000
+dt = 4.0e-3
+writeControl = timeStep
+writeInterval =1000
+variableDT=yes
+targetCFL=0.5
+timeStepper = BDF2
+
+[PROBLEMTYPE]
+equation = incompNS
+variableProperties = yes
+stressFormulation = yes
+
+[VELOCITY]
+density = 998.21
+viscosity = 1.0016e-3
+residualTol = 1.0e-7
+
+[PRESSURE]
+residualTol = 1.0e-5
+
+[TEMPERATURE]
+solver = none
+rhoCp = 1.0
+conductivity = 1.e-4
+residualTol = 1.0e-7
+
+[SCALAR01] # tke
+density = 998.21
+diffusivity = 1.0016e-3
+residualTol = 1.0e-7
+
+[SCALAR02] # tau
+density = 998.21
+diffusivity = 1.0016e-3
+residualTol = 1.0e-7
