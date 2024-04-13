@@ -3,25 +3,25 @@ All files associated with Aaron Huxford's PhD Thesis work.
 
 ## Thesis (not a directory)
 - Link to Overleaf LaTeX files, figures, etc:
--- https://www.overleaf.com/read/mnkfvfskrnnw#c96318
+  - https://www.overleaf.com/read/mnkfvfskrnnw#c96318
 
 ## Defense (not a directory)
 - Link to Google Slides presentation:
--- https://docs.google.com/presentation/d/1K9Wn_VprCoXw26hqMYYR6fY3t6D6KlFtRRHbQgYnfPQ/edit?usp=sharing
+  - https://docs.google.com/presentation/d/1K9Wn_VprCoXw26hqMYYR6fY3t6D6KlFtRRHbQgYnfPQ/edit?usp=sharing
 
 ## JournalPaper_DoubleTJunction
 - Directory with files utilized to publish "A hybrid domain overlapping method for coupling System Thermal Hydraulics and CFD codes"
 - DOI link: https://doi.org/10.1016/j.anucene.2023.109842
 - Links to Overleaf LaTeX files:
--- https://www.overleaf.com/read/wmhhdbnfjwpg#1e53c7
--- https://www.overleaf.com/read/rxrgfpwkzpnd#252f28
+  - https://www.overleaf.com/read/wmhhdbnfjwpg#1e53c7
+  - https://www.overleaf.com/read/rxrgfpwkzpnd#252f28
 
 ## JournalPaper_TALL3D
 - Directory with files utilized to publish "Validation of a Hybrid Domain Overlapping Coupling Between SAM and CFD Against the TALL-3D Transients"
 - DOI link: **Under second round of reviews (as of April 13 2024)**
 - Links to Overleaf LaTeX files:
--- https://www.overleaf.com/read/kvjhqpyrfftv#283a66
--- https://www.overleaf.com/read/frwjzpfgqkmf#01cf59
+  - https://www.overleaf.com/read/kvjhqpyrfftv#283a66
+  - https://www.overleaf.com/read/frwjzpfgqkmf#01cf59
 
 ## FinalReport_NEUP19864
 
@@ -30,12 +30,12 @@ All files associated with Aaron Huxford's PhD Thesis work.
 ## CouplingVideos
 - Directory with files utilized to create coupled STH/CFD videos of several validation efforts.
 - Links to the videos on YouTube (unlisted):
--- Double T-Junction, SAM-NekRS coupling: https://youtu.be/WynSBclF72E
--- TALL-3D TG03.S301.04, SAM-STARCCM+: https://youtu.be/-BBPfzp9wLs
--- TALL-3D TG03.S301.03, SAM-STARCCM+: https://youtu.be/HYga87JkSVQ
+  - Double T-Junction, SAM-NekRS coupling: https://youtu.be/WynSBclF72E
+  - TALL-3D TG03.S301.04, SAM-STARCCM+: https://youtu.be/-BBPfzp9wLs
+  - TALL-3D TG03.S301.03, SAM-STARCCM+: https://youtu.be/HYga87JkSVQ
 
 
 ## FilesTooBigForGithub (not a directory)
 - Link to Google Drive folder that hosts large files that are too big for Github.
--- https://drive.google.com/drive/folders/10TqiXcjPNpuftKBO63dpykGxkXoB_cL9?usp=sharing
+  - https://drive.google.com/drive/folders/10TqiXcjPNpuftKBO63dpykGxkXoB_cL9?usp=sharing
 
