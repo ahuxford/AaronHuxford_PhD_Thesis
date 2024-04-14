@@ -1,8 +1,8 @@
 # AaronHuxford_PhD_Thesis
-All files associated with Aaron Huxford's PhD Thesis work.
+All files associated with Aaron Huxford's PhD Thesis work. Please read the entire README before you look around. (:
 
 ## Thesis (not a directory)
-- Link to Overleaf LaTeX files, figures, etc:
+- Link to Overleaf:
   - https://www.overleaf.com/read/mnkfvfskrnnw#c96318
 
 ## Defense (not a directory)
@@ -13,7 +13,7 @@ All files associated with Aaron Huxford's PhD Thesis work.
 - Directory with files utilized to publish "A hybrid domain overlapping method for coupling System Thermal Hydraulics and CFD codes"
 - DOI link:
   - https://doi.org/10.1016/j.anucene.2023.109842
-- Links to Overleaf LaTeX files:
+- Links to Overleaf:
   - https://www.overleaf.com/read/wmhhdbnfjwpg#1e53c7
   - https://www.overleaf.com/read/rxrgfpwkzpnd#252f28
 
@@ -21,13 +21,16 @@ All files associated with Aaron Huxford's PhD Thesis work.
 - Directory with files utilized to publish "Validation of a Hybrid Domain Overlapping Coupling Between SAM and CFD Against the TALL-3D Transients"
 - DOI link:
   - **Under second round of review (as of April 13 2024)**
-- Links to Overleaf LaTeX files:
+- Links to Overleaf:
   - https://www.overleaf.com/read/kvjhqpyrfftv#283a66
   - https://www.overleaf.com/read/frwjzpfgqkmf#01cf59
 
 ## FinalReport_NEUP19864
 
+## Thesis_ABTR
 
+## SupportingFiles
+- custom MOOSE postprocessor utilized for SAM-STARCCM+ coupling
 
 ## CouplingVideos
 - Directory with files utilized to create coupled STH/CFD videos of several validation efforts.
@@ -40,4 +43,4 @@ All files associated with Aaron Huxford's PhD Thesis work.
 ## FilesTooBigForGithub (not a directory)
 - Link to Google Drive folder that hosts large files that are too big for Github.
   - https://drive.google.com/drive/folders/10TqiXcjPNpuftKBO63dpykGxkXoB_cL9?usp=sharing
-
+- This is mainly starccm .sim files, that contain their mesh so they're large
