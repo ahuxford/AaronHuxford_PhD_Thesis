@@ -1,14 +1,6 @@
 # AaronHuxford_PhD_Thesis
 All files associated with Aaron Huxford's PhD Thesis work. Please read the entire README before you look around. (:
 
-## Thesis (not a directory)
-- Link to Overleaf:
-  - https://www.overleaf.com/read/mnkfvfskrnnw#c96318
-
-## Defense (not a directory)
-- Link to Google Slides presentation:
-  - https://docs.google.com/presentation/d/1K9Wn_VprCoXw26hqMYYR6fY3t6D6KlFtRRHbQgYnfPQ/edit?usp=sharing
-
 ## JournalPaper_DoubleTJunction
 - Directory with files utilized to publish "A hybrid domain overlapping method for coupling System Thermal Hydraulics and CFD codes"
 - DOI link:
@@ -33,6 +25,14 @@ All files associated with Aaron Huxford's PhD Thesis work. Please read the entir
 
 ## SupportingFiles
 - custom MOOSE postprocessor required for SAM-STARCCM+ coupling
+
+## Thesis (not a directory)
+- Link to Overleaf:
+  - https://www.overleaf.com/read/mnkfvfskrnnw#c96318
+
+## Defense (not a directory)
+- Link to Google Slides presentation:
+  - https://docs.google.com/presentation/d/1K9Wn_VprCoXw26hqMYYR6fY3t6D6KlFtRRHbQgYnfPQ/edit?usp=sharing
 
 ## CouplingVideos (not a directory)
 - Links to STH/CFD coupled videos on YouTube (unlisted) for several validation transients:
