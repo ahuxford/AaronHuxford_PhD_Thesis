@@ -1,0 +1,66 @@
+// Boundary conditions
+/* inflow 1, outflow 2, wall 3 */
+
+#include <iostream>
+
+@kernel void gravity(const dlong Ntotal,
+                      const dlong offset,
+                      @restrict const dfloat * Y,
+                      @restrict const dfloat * S,
+                      @restrict const dfloat * U,
+                      @restrict dfloat * OUT)
+{
+  for(dlong n=0;n<Ntotal;++n;@tile(p_blockSize,@outer,@inner)){
+    if(n<Ntotal){
+
+      const dfloat temp = S[n];
+
+      const dfloat grav  = 9.8;
+      const dfloat beta  = 0.1;
+      const dfloat temp0 = 0.0;
+
+      OUT[n + 0*offset] =  -grav*(1 - beta*(temp-temp0)); // I think multiplied by rho automatically
+    }
+  }
+}
+
+
+
+@kernel void heat(const dlong Ntotal,
+                      const dlong offset,
+                      @restrict const dfloat * Y,
+                      @restrict const dfloat * S,
+                      @restrict dfloat * OUT)
+{
+  for(dlong n=0;n<Ntotal;++n;@tile(p_blockSize,@outer,@inner)){
+    if(n<Ntotal){
+
+      OUT[n + 0*offset] =  1.0; // volumetric heat source
+    }
+  }
+}
+
+
+void velocityDirichletConditions(bcData *bc)
+{
+
+  dfloat yi = bc->y;
+  dfloat zi = bc->z;
+
+  dfloat rsq  = yi*yi + zi*zi;
+
+
+  dfloat Rsq  = 0.05*0.05; // R^2
+  dfloat Uavg  = 3.0;
+
+ 
+  bc->u = 2*Uavg*(1-rsq/Rsq);
+  bc->v = 0.0;
+  bc->w = 0.0;
+}
+
+void scalarDirichletConditions(bcData *bc)
+{
+  bc->s = 0.0;
+}
+

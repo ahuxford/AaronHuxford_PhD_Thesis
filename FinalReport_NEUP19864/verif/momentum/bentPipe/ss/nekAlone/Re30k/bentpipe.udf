@@ -1,0 +1,55 @@
+//
+// nekRS User Defined File
+//
+
+#include <math.h>
+#include "udf.hpp"
+#include <iostream>
+#include "plugins/RANSktau.hpp"
+
+#define MAX_SCRATCH_FIELDS 7
+
+/* User Functions */
+
+static dfloat rho, mueLam;
+occa::kernel userfKernel;
+
+void userq(nrs_t *nrs, dfloat time, occa::memory o_S, occa::memory o_FS)
+{
+  mesh_t *mesh = nrs->meshV;
+  cds_t *cds   = nrs->cds;
+
+  RANSktau::updateSourceTerms();
+}
+
+void uservp(nrs_t *nrs, dfloat time, occa::memory o_U, occa::memory o_S,
+            occa::memory o_UProp, occa::memory o_SProp)
+{
+  mesh_t *mesh = nrs->meshV;
+  cds_t *cds   = nrs->cds;
+
+  RANSktau::updateProperties();
+}
+
+void UDF_LoadKernels(occa::properties& kernelInfo)
+{
+  RANSktau::buildKernel(kernelInfo);
+}
+
+void UDF_Setup(nrs_t *nrs)
+{
+  mesh_t *mesh = nrs->meshV;
+  cds_t *cds = nrs->cds;
+
+  udf.properties = &uservp;
+  udf.sEqnSource = &userq;
+
+  const int scalarFieldStart = 1;
+  platform->options.getArgs("VISCOSITY", mueLam);
+  platform->options.getArgs("DENSITY", rho);
+  RANSktau::setup(nrs, mueLam, rho, scalarFieldStart);
+}
+
+void UDF_ExecuteStep(nrs_t *nrs, dfloat time, int tstep)
+{
+}

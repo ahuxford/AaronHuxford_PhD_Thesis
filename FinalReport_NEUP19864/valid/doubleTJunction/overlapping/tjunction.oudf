@@ -1,0 +1,224 @@
+// Boundary conditions
+//
+// Double T Junction
+// Using the boundary IDs following this diagram
+
+//  555555555555555555555555555555555555555555555555555555555555555555555555555555555
+// 1                                                                                 4
+// 1                                                                                 4
+// 1                                                                                 4
+// 1                                                                                 4
+// 1                                                                                 4
+//  555555555555          555555555555555555555          5555555555555555555555555555
+//             5          5                   5          5
+//             5          5                   5          5
+//             5          5                   5          5
+//             5          5                   5          5
+//             5          5                   5          5
+//             5          5                   5          5
+//             5          5                   5          5
+//             5          5                   5          5
+//             5          5                   5          5
+//             5          5                   5          5
+//              2222222222                    5          5
+//                                            5          5
+//                                            5          5
+//                                            5          5
+//                                            5          5
+//                                            5          5
+//                                            5          5
+//                                            5          5
+//                                            5          5
+//                                            5          5
+//                                             3333333333
+
+#include <iostream>
+
+@kernel void scalarScaledAdd(const dlong N,
+                             const dfloat a,
+                             const dfloat b,
+                             @restrict const dfloat* X,
+                             @restrict dfloat* Y)
+{
+  for(dlong n = 0; n < N; ++n; @tile(256,@outer,@inner))
+    if(n < N)
+      Y[n] = a + b * X[n];
+}
+
+@kernel void cliptOKL(const dlong Nelements, // clipping
+          const dlong offset,
+          @restrict dfloat * SCALAR)
+{
+ for(dlong e=0;e<Nelements;++e;@outer(0)){
+  for(int n=0;n<p_Np;++n;@inner(0)){
+   const int id = e*p_Np + n;
+   if(SCALAR[id + 3*offset]<0.0){ // clip SCALAR03
+
+     SCALAR[id + 3*offset] = 0.0; // clipping at a minimum
+   }
+//   if(SCALAR[id + 3*offset]>1.0){
+//       SCALAR[id + 3*offset] = 1.0; // clipping at a maximum
+   if(SCALAR[id + 3*offset]>0.9987623){
+
+       SCALAR[id + 3*offset] = 0.9987623; // clipping at a maximum
+   }
+  }
+ }
+}
+
+
+
+void velocityDirichletConditions(bcData *bc)
+{
+
+  // U polynomial
+  dfloat U,n_u,zu_0,zu_1,zu_2,zu_3,zu_4,zu_5,zu_6,zu_7,zu_8,zu_9;
+
+  n_u   = 9;
+  zu_0  = -2.59635661e+17;
+  zu_1  = 2.72368871e+16;
+  zu_2  = -1.19258979e+15;
+  zu_3  = 2.82441298e+13;
+  zu_4  = -3.91947854e+11;
+  zu_5  = 3.22610242e+09;
+  zu_6  = -1.51911938e+07;
+  zu_7  = 3.70188280e+04;
+  zu_8  = -3.85413140e+01;
+  zu_9  = 5.24592682e-01;
+
+  // local position variables
+  dfloat xi; // x position, will account for side inlet offset
+  dfloat yi; // y position
+  dfloat zi; // z position
+  dfloat ri; // radius from center
+
+  dfloat y_sideOffset = 0.145; // y location of center of main inlet
+
+
+  if (bc->id == 1){ // main line inlet
+
+    yi = bc->y - y_sideOffset;
+    zi = bc->z;
+    ri  = sqrt(yi*yi + zi*zi);
+
+    U = zu_0*pow(ri,n_u)   + zu_1*pow(ri,n_u-1) + zu_2*pow(ri,n_u-2) + zu_3*pow(ri,n_u-3) +\
+        zu_4*pow(ri,n_u-4) + zu_5*pow(ri,n_u-5) + zu_6*pow(ri,n_u-6) + zu_7*pow(ri,n_u-7) +\
+        zu_8*pow(ri,n_u-8) + zu_9*pow(ri,n_u-9);
+
+    bc->u = std::abs(U);
+    bc->v = 0.0;
+    bc->w = 0.0;
+
+  }
+  if(bc->id == 2){ // side line inlet
+
+    xi = bc->x;
+    zi = bc->z;
+    ri  = sqrt(xi*xi + zi*zi);
+
+    U = zu_0*pow(ri,n_u)   + zu_1*pow(ri,n_u-1) + zu_2*pow(ri,n_u-2) + zu_3*pow(ri,n_u-3) +\
+        zu_4*pow(ri,n_u-4) + zu_5*pow(ri,n_u-5) + zu_6*pow(ri,n_u-6) + zu_7*pow(ri,n_u-7) +\
+        zu_8*pow(ri,n_u-8) + zu_9*pow(ri,n_u-9);
+
+    bc->u = 0.0;
+
+    dfloat U_norm = 0.424; //avg velocity used in periodic pipe simulation
+    bc->v = std::abs(U) * bc->wrk[bc->idM] / U_norm;
+    bc->w = 0.0;
+  }
+}
+
+// Set pressure to side line's outlet loop
+void pressureDirichletConditions(bcData *bc)
+{
+//  if(bc->id == 3) bc->p = -357.0; // side line outlet
+  if(bc->id == 3) bc->p = -358.0; // side line outlet
+  if(bc->id == 4) bc->p = 0.0;    // main line outlet
+}
+
+void scalarDirichletConditions(bcData *bc)
+{
+  // tau polynomial
+  dfloat tau,n_t,zt_0,zt_1,zt_2,zt_3,zt_4,zt_5;
+
+  n_t  = 5;
+  zt_0 = 2.40617310e+07 ;
+  zt_1 = -1.99355081e+06;
+  zt_2 = 6.21728861e+04 ;
+  zt_3 = -8.76088090e+02;
+  zt_4 = 6.16563701e-01 ;
+  zt_5 = 1.03831231e-01 ;
+
+  // tke polynomial
+  dfloat tke,n_k,zk_0,zk_1,zk_2,zk_3,zk_4,zk_5,zk_6,zk_7,zk_8,zk_9;
+
+  n_k   = 9;
+  zk_0  = -1.94669387e+15;
+  zk_1  = 2.03912649e+14;
+  zk_2  = -8.91135642e+12;
+  zk_3  = 2.10569851e+11;
+  zk_4  = -2.91450677e+09;
+  zk_5  = 2.39206770e+07;
+  zk_6  = -1.12376218e+05;
+  zk_7  = 2.78008638e+02;
+  zk_8  = -2.84658194e-01;
+  zk_9  = 6.33591987e-04;
+
+  // local position variables
+  dfloat xi; // x position, will account for side inlet offset
+  dfloat yi; // y position
+  dfloat zi; // z position
+  dfloat ri; // radius from center
+
+  dfloat y_sideOffset = 0.145; // y location of center of side inlet = 0.075 + 0.025
+
+  // main line inlet
+  if(bc->id == 1) {
+
+    yi = bc->y - y_sideOffset;
+    zi = bc->z;
+    ri  = sqrt(yi*yi + zi*zi);
+
+    tau = zt_0*pow(ri,n_t)   + zt_1*pow(ri,n_t-1) + zt_2*pow(ri,n_t-2) +\
+          zt_3*pow(ri,n_t-3) + zt_4*pow(ri,n_t-4) + zt_5*pow(ri,n_t-5);
+
+    tke = zk_0*pow(ri,n_k)   + zk_1*pow(ri,n_k-1) + zk_2*pow(ri,n_k-2) + zk_3*pow(ri,n_k-3) +\
+          zk_4*pow(ri,n_k-4) + zk_5*pow(ri,n_k-5) + zk_6*pow(ri,n_k-6) + zk_7*pow(ri,n_k-7) +\
+          zk_8*pow(ri,n_k-8) + zk_9*pow(ri,n_k-9);
+
+    if(bc->scalarId == 1) bc->s = std::abs(tke);
+    if(bc->scalarId == 2) bc->s = std::abs(tau);
+    if(bc->scalarId == 3) bc->s = 0.0; // tracer
+
+  }
+
+  // side line inlet
+  if(bc->id == 2) {
+
+    xi = bc->x;
+    zi = bc->z;
+    ri  = sqrt(xi*xi + zi*zi);
+
+    tau = zt_0*pow(ri,n_t)   + zt_1*pow(ri,n_t-1) + zt_2*pow(ri,n_t-2) +\
+          zt_3*pow(ri,n_t-3) + zt_4*pow(ri,n_t-4) + zt_5*pow(ri,n_t-5);
+
+    tke = zk_0*pow(ri,n_k)   + zk_1*pow(ri,n_k-1) + zk_2*pow(ri,n_k-2) + zk_3*pow(ri,n_k-3) +\
+          zk_4*pow(ri,n_k-4) + zk_5*pow(ri,n_k-5) + zk_6*pow(ri,n_k-6) + zk_7*pow(ri,n_k-7) +\
+          zk_8*pow(ri,n_k-8) + zk_9*pow(ri,n_k-9);
+
+    if(bc->scalarId == 1) bc->s = std::abs(tke);
+    if(bc->scalarId == 2) bc->s = std::abs(tau);
+
+    dfloat tracer = 0.0;
+
+    if(bc->wrk[bc->idM + 4*bc->fieldOffset] < 1e-12){
+      tracer = 1e-12;
+    }
+    else {
+      tracer = bc->wrk[bc->idM + 4*bc->fieldOffset];
+    }
+      if(bc->scalarId == 3) bc->s = tracer; // tracer injection
+
+  }
+}
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+#SBATCH --nodes=3
+#SBATCH --ntasks-per-node=32
+#SBATCH --time=999:00:00
+#SBATCH -p compute
+
+cd $SLURM_SUBMIT_DIR
+
+mpirun -np 96 $HOME/cardinal/cardinal-opt -i nek_main.i > logfile

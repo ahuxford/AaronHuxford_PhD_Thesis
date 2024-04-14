@@ -1,0 +1,70 @@
+// Boundary conditions
+/* inflow 1, outflow 2, wall 3 */
+
+#include <iostream>
+
+
+void velocityDirichletConditions(bcData *bc)
+{
+
+  dfloat t, uavg; 
+
+  t = bc->time - 5.1; // 5.1 second offset due to restart file
+
+  if (t <= 1.0)
+    uavg = 2.6726486e-01;
+  else if (t >= 6.0)
+    uavg = (4.0/3.0)*2.6726486e-01;
+  else
+    uavg = 2.6726486e-01 + (1.0/3.0)*(2.6726486e-01/5.0)*(t - 1.0);
+
+  bc->u = uavg;
+  bc->v = 0.0;
+  bc->w = 0.0;
+}
+
+void scalarDirichletConditions(bcData *bc)
+{
+  dfloat wd, r, Re, darcy, utau, sigk, kmax, yplus, yk, tke, tau;
+
+  dfloat t, uavg; 
+
+  t = bc->time - 5.1; // 5.1 second offset due to restart file
+
+  if (t <= 1.0)
+    uavg = 2.6726486e-01;
+  else if (t >= 6.0)
+    uavg = (4.0/3.0)*2.6726486e-01;
+  else
+    uavg = 2.6726486e-01 + (1.0/3.0)*(2.6726486e-01/5.0)*(t - 1.0);
+
+  dfloat u      = uavg;
+  dfloat rho    = 9.9756100e02;
+  dfloat mueLam = 8.8871000e-04;
+  dfloat R      = 0.05;
+
+  Re = rho*u*2*R/mueLam;
+
+  dfloat yi = bc->y;
+  dfloat zi = bc->z;
+
+  wd = R - sqrt(yi*yi + zi*zi);
+  r  = sqrt(yi*yi + zi*zi);
+
+  darcy = 0.316/(pow(Re,0.25));
+  utau  = sqrt(darcy/8.0);
+  sigk  = 0.6;
+  kmax  = 2.5*utau*utau;
+  yplus = max(wd*utau*Re,1.0e-6);
+  yk    = 30.0;
+
+  tke   = 2.15 * kmax*exp(-pow(log10(yplus/yk),2.0)/(2.0*sigk*sigk));
+
+  tau   = 2.15 * ((R/2)/(5*utau))*(1 - pow(r/R,2));
+
+  bc->s = 0;
+  if (bc->scalarId == 0) bc->s = 1.0;
+  if((bc->scalarId == 1)&&(bc->id == 1)) bc->s = tke;
+  if((bc->scalarId == 2)&&(bc->id == 1)) bc->s = tau;
+}
+

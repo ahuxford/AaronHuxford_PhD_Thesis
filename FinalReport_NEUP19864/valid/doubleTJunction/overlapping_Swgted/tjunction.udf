@@ -1,0 +1,97 @@
+//
+// nekRS User Defined File
+//
+
+#include <math.h>
+#include "udf.hpp"
+#include <iostream>
+#include "plugins/RANSktau.hpp"
+
+
+/* User Functions */
+
+static dfloat rho, mueLam;
+static occa::kernel scalarScaledAddKernel;
+static occa::kernel cliptKernel; // clipping
+
+void clipt(nrs_t *nrs) // clipping
+{
+ mesh_t *meshV = nrs->meshV;
+ cds_t* cds = nrs->cds;
+ cliptKernel(meshV->Nelements, cds->fieldOffset[0], cds->o_S);
+}
+
+
+void userq(nrs_t *nrs, dfloat time, occa::memory o_S, occa::memory o_FS)
+{
+  auto mesh = nrs->cds->mesh[0];
+  cds_t *cds   = nrs->cds;
+
+  RANSktau::updateSourceTerms();
+}
+
+void uservp(nrs_t *nrs, dfloat time, occa::memory o_U, occa::memory o_S,
+            occa::memory o_UProp, occa::memory o_SProp)
+{
+  auto mesh = nrs->cds->mesh[0];
+  cds_t *cds   = nrs->cds;
+
+  RANSktau::updateProperties();
+
+// Add turbulent diffusivity to tracer equation
+  dfloat conductivity;
+  platform->options.getArgs("SCALAR03 DIFFUSIVITY", conductivity);
+
+// TODO, compare results varying turb schmidt
+  const dfloat Pr_t = 0.9; // default in CFX, may have been altered though
+
+  occa::memory o_mue_t = RANSktau::o_mue_t();
+  occa::memory o_tracer_mue = cds->o_diff + 3*cds->fieldOffset[0]*sizeof(dfloat);
+
+// add turbulent diffusion
+  scalarScaledAddKernel(mesh->Nlocal, conductivity, 1/Pr_t, o_mue_t, o_tracer_mue);
+
+}
+
+void UDF_LoadKernels(nrs_t *nrs)
+{
+  scalarScaledAddKernel = udfBuildKernel(nrs, "scalarScaledAdd");
+  cliptKernel = udfBuildKernel(nrs, "cliptOKL"); // clipping
+  RANSktau::buildKernel(nrs);
+}
+
+void UDF_Setup(nrs_t *nrs)
+{
+  auto mesh = nrs->cds->mesh[0];
+  cds_t *cds = nrs->cds;
+
+  udf.properties = &uservp;
+  udf.sEqnSource = &userq;
+
+  const int scalarFieldStart = 1;
+  platform->options.getArgs("VISCOSITY", mueLam);
+  platform->options.getArgs("DENSITY", rho);
+  RANSktau::setup(nrs, mueLam, rho, scalarFieldStart);
+
+// read from rst.fld
+
+//
+  int n_gll_points = mesh->Np * mesh->Nelements;
+  for (int n = 0; n < n_gll_points; ++n)
+  {
+    nrs->cds->S[n + 3 * nrs->cds->fieldOffset[0]] = 0.0; // tracer
+  }
+
+}
+
+void UDF_ExecuteStep(nrs_t *nrs, dfloat time, int tstep)
+{
+// clip tracer concentration
+  std::cout << "Clip scalar" << std::endl;
+  clipt(nrs);
+
+//  // send to nek, call userchk, and return from Nek
+  nek::ocopyToNek(time, tstep);
+  nek::userchk();
+
+}

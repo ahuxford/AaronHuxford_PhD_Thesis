@@ -1,0 +1,173 @@
+      include "utilities.usr"
+      include "limits.f"
+c-----------------------------------------------------------------------
+      subroutine useric (ix,iy,iz,ieg)
+      include 'SIZE'
+      include 'TOTAL'
+      include 'NEKUSE'
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine userchk
+      include 'SIZE'
+      include 'TOTAL'
+
+      real planar_ave_m1 ! function we will call for planar average
+      real planar_ave_m1_wgt ! function for weighted planar average
+
+      real planar_int_m1_wgt
+      real planar_int_m1
+
+      real norm2o(3), pt2o(3)
+      real norm2(3) , pt2(3)
+      real norm3(3) , pt3(3)
+
+      real eps_wm2o, eps_wm2, eps_wm3
+
+      real avgS_wm2o, avgU_wm2o, wm2o_wgtfunc, wm2o_wgt
+      real avgS_wm2, avgU_wm2, wm2_wgtfunc, wm2_wgt
+      real avgS_wm3, avgU_wm3, wm3_wgtfunc, wm3_wgt
+
+      real intU_wm2,intSU_wm2, intU_wm3,intSU_wm3
+      real avgS_wm2_wgt, avgS_wm3_wgt
+
+      real s03(lx1,ly1,lz1,lelt)        ! scalar03 for reference/comparison
+
+      real n,smin,smax,simin,simax
+      n = lx1*ly1*lz1*lelt
+
+c cant easily take values at WM1 because plane would cut through side outlet also 
+
+c     WM2 old location
+      norm2o(1) =  0.0
+      norm2o(2) = -1.0
+      norm2o(3) =  0.0
+      pt2o(1)   =  0.128
+      pt2o(2)   = -0.10
+      pt2o(3)   =  0.0
+
+c     WM2 (bertolotto cfx) location
+      norm2(1) =  0.0
+      norm2(2) = -1.0
+      norm2(3) =  0.0
+      pt2(1)   =  0.128     ! center of pipe
+      pt2(2)   = -0.08
+      pt2(3)   =  0.0
+
+c     WM3 location
+      norm3(1) = 1.0
+      norm3(2) = 0.0
+      norm3(3) = 0.0
+      pt3(1)   = 0.328
+      pt3(2)   = 0.12+0.025 ! center of pipe
+      pt3(3)   = 0.0
+
+c     fill scalar03 array
+      do i=1,lx1
+        do j=1,ly1
+          do k=1,lz1
+            do e=1,lelt
+             s03(i,j,k,e)      = t(i,j,k,e,4)             ! pull 4th scalar for scalar03
+            enddo
+          enddo
+        enddo
+      enddo
+
+c     call planar averaging for each wire mesh
+
+      if(nio.eq.0) write(6,'(a15,es13.4)') "Avg time,",time
+
+      eps_wm2  = 0.04 ! eps for wm2
+      eps_wm3  = 0.02 ! eps for wm3
+
+c----------------------
+c
+c Old Wire Mesh Sensor 2
+c
+c---------------------
+c use m1 because m2 is for pressure (matters if lx2/=lx1)
+
+c      avgS_wm2 = planar_ave_m1(s03,norm2o,pt2o,eps_wm2)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "S WM2o avg,",avgS_wm2
+c
+c      wm2_wgtfunc = planar_ave_m1_wgt(s03,-vy,norm2o,pt2o,eps_wm2)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "WM2o wgt,", wm2_wgtfunc
+
+c----------------------
+c
+c Wire Mesh Sensor 2
+c
+c---------------------
+c use m1 because m2 is for pressure (matters if lx2/=lx1)
+
+      avgS_wm2 = planar_ave_m1(s03,norm2,pt2,eps_wm2)
+      if(nio.eq.0) write(6,'(a15,es13.4)') "S WM2 avg,",avgS_wm2
+
+c      avgU_wm2 = planar_ave_m1(-vy,norm2,pt2,eps_wm2)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "U WM2 avg,",avgU_wm2
+c
+c      wm2_wgtfunc = planar_ave_m1_wgt(s03,-vy,norm2,pt2,eps_wm2)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "WM2 wgt,", wm2_wgtfunc
+
+      intU_wm2 = planar_int_m1(vy,norm2,pt2,eps_wm2)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "U WM2 tot,",intU_wm2
+
+      intSU_wm2 = planar_int_m1_wgt(s03,vy,norm2,pt2,eps_wm2)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "SU WM2 tot,",intSU_wm2
+
+      avgS_wm2_wgt = intSU_wm2/intU_wm2
+      if(nio.eq.0) write(6,'(a15,es13.4)') "S WM2 wgt,",avgS_wm2_wgt
+
+c----------------------
+c
+c Wire Mesh Sensor 3
+c
+c---------------------
+
+
+      avgS_wm3 = planar_ave_m1(s03,norm3,pt3,eps_wm3)
+      if(nio.eq.0) write(6,'(a15,es13.4)') "S WM3 avg,",avgS_wm3
+
+c      avgU_wm3 = planar_ave_m1(vx,norm3,pt3,eps_wm3)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "U WM3 avg,",avgU_wm3
+c
+c      wm3_wgtfunc = planar_ave_m1_wgt(s03,vx,norm3,pt3,eps_wm3)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "WM3 wgt func,", wm3_wgtfunc
+
+      intU_wm3 = planar_int_m1(vx,norm3,pt3,eps_wm3)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "U WM3 tot,",intU_wm3
+
+      intSU_wm3 = planar_int_m1_wgt(s03,vx,norm3,pt3,eps_wm3)
+c      if(nio.eq.0) write(6,'(a15,es13.4)') "SU WM3 tot,",intSU_wm3
+
+      avgS_wm3_wgt = intSU_wm3/intU_wm3
+      if(nio.eq.0) write(6,'(a15,es13.4)') "S WM3 wgt,",avgS_wm3_wgt
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine usrdat   ! This routine to modify element vertices
+      include 'SIZE'
+      include 'TOTAL'
+
+      return
+      end
+c-----------------------------------------------------------------------
+c-----------------------------------------------------------------------
+      subroutine usrdat2
+      include 'SIZE'
+      include 'TOTAL'
+
+      return
+      end
+c-----------------------------------------------------------------------
+c-----------------------------------------------------------------------
+      subroutine usrdat3()
+      implicit none
+      include 'SIZE'
+      include 'TOTAL'
+
+      return
+      end
+c---------

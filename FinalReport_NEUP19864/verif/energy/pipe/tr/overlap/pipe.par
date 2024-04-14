@@ -1,0 +1,33 @@
+[OCCA]
+backend = CPU
+deviceNumber = LOCAL-RANK
+
+[GENERAL]
+startFrom = rst.fld
+polynomialOrder = 4
+dt = 1e-03
+numSteps = 2500
+writeInterval = 250
+
+timeStepper = bdf1
+extrapolation = subCycling
+subCyclingSteps = 2
+
+[PROBLEMTYPE]
+equation = incompNS
+stressFormulation = true # required for variable viscosity
+
+[PRESSURE]
+residualTol = 1e-10
+
+[VELOCITY]
+boundaryTypeMap = v, O, W 
+residualTol = 1e-10
+density = 1.0
+viscosity = 1e-3
+
+[TEMPERATURE]
+boundaryTypeMap = t, O, I
+residualTol = 1e-10
+rhoCp = 1.0
+conductivity = 1e-3

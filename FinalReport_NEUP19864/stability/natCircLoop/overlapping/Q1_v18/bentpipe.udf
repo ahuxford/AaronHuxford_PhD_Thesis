@@ -1,0 +1,87 @@
+//
+// nekRS User Defined File
+//
+
+#include <math.h>
+#include "udf.hpp"
+#include <iostream>
+#include "plugins/RANSktau.hpp"
+
+#define MAX_SCRATCH_FIELDS 7
+
+/* User Functions */
+
+static dfloat rho, mueLam;
+occa::kernel gravityKernel;
+
+void userf(nrs_t *nrs, dfloat time, occa::memory o_U, occa::memory o_FU)
+{
+  mesh_t* mesh = nrs->meshV;
+  gravityKernel(
+    mesh->Nlocal,
+    nrs->fieldOffset,                                                                                                                                                                                          nrs->meshV->o_y,
+    nrs->cds->o_S,
+    nrs->o_U,
+    o_FU);
+}
+
+
+
+void userq(nrs_t *nrs, dfloat time, occa::memory o_S, occa::memory o_FS)
+{
+  auto mesh = nrs->cds->mesh[0];
+  cds_t *cds   = nrs->cds;
+
+  RANSktau::updateSourceTerms();
+}
+
+void uservp(nrs_t *nrs, dfloat time, occa::memory o_U, occa::memory o_S,
+            occa::memory o_UProp, occa::memory o_SProp)
+{
+  auto mesh = nrs->cds->mesh[0];
+  cds_t *cds   = nrs->cds;
+
+  RANSktau::updateProperties();
+
+  dfloat conductivity;
+  platform->options.getArgs("SCALAR00 DIFFUSIVITY", conductivity);
+  const dfloat Pr_t = 0.7;
+  occa::memory o_mue_t = RANSktau::o_mue_t();
+  occa::memory o_temp_mue = cds->o_diff + 0*cds->fieldOffset[0]*sizeof(dfloat);
+}
+
+void UDF_LoadKernels(nrs_t *nrs)
+{
+  gravityKernel = udfBuildKernel(nrs, "gravity");
+  RANSktau::buildKernel(nrs);
+}
+
+void UDF_Setup(nrs_t *nrs)
+{
+  auto mesh = nrs->cds->mesh[0];
+  cds_t *cds = nrs->cds;
+
+  udf.uEqnSource = &userf;  // gravity source for velocity
+  udf.properties = &uservp;
+  udf.sEqnSource = &userq;
+
+  const int scalarFieldStart = 1;
+  platform->options.getArgs("VISCOSITY", mueLam);
+  platform->options.getArgs("DENSITY", rho);
+  RANSktau::setup(nrs, mueLam, rho, scalarFieldStart);
+
+  int n_gll_points = mesh->Np * mesh->Nelements;
+
+  // temperature
+  dfloat temp = 548.13125994382;
+  for (int n = 0; n < n_gll_points; ++n)
+  {
+    nrs->cds->S[n + 0 * nrs->cds->fieldOffset[0]] = temp; // temperature
+  }
+
+}
+
+void UDF_ExecuteStep(nrs_t *nrs, dfloat time, int tstep)
+{
+
+}

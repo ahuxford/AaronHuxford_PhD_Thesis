@@ -1,0 +1,86 @@
+// Boundary conditions
+/* inflow 1, outflow 2, wall 3 */
+
+#include <iostream>
+
+@kernel void gravity(const dlong Ntotal,
+                      const dlong offset,
+                      @restrict const dfloat * Y,
+                      @restrict const dfloat * S,
+                      @restrict const dfloat * U,
+                      @restrict dfloat * OUT)
+{
+  for(dlong n=0;n<Ntotal;++n;@tile(p_blockSize,@outer,@inner)){
+    if(n<Ntotal){
+
+      const dfloat temp = S[n];
+
+      const dfloat grav  = 9.8;
+      const dfloat beta  = 0.00222;
+      const dfloat rho   = 769.02;
+      const dfloat temp0 = 550.0;
+
+
+      // gravity and bouyancy in z direction
+      OUT[n + 2*offset] = -grav*(1.0-beta*(temp-temp0)); // I think multiplied by rho automatically
+    }
+  }
+}
+
+
+
+void velocityDirichletConditions(bcData *bc)
+{
+  dfloat R  = 0.03; // radius of pipe
+
+  dfloat yi = bc->y;
+  dfloat xi = bc->x;
+  dfloat r  = sqrt(yi*yi + xi*xi);
+
+  dfloat n = 7;
+
+  bc->u = 0.0;
+  bc->v = 0.0;
+
+//  bc->w = -bc->wrk[bc->idM]; // flat velocity
+
+  bc->w = -(bc->wrk[bc->idM]/2)*(1.0/n + 1)*(1.0/n + 2)*pow((1 - r/R),1.0/n); //turbulent profile
+
+
+}
+
+void scalarDirichletConditions(bcData *bc)
+{
+  dfloat wd, r, Re, darcy, utau, sigk, kmax, yplus, yk, tke, tau;
+
+  dfloat u_sam = bc->wrk[bc->idM]; // velocity from SAM
+  dfloat Tavg  = bc->wrk[bc->idM + bc->fieldOffset]; // temperature from SAM
+
+  dfloat rho    = 769.02;
+  dfloat mueLam = 9.7512e-5;
+  dfloat R      = 0.03; // radius of pipe
+
+  Re = rho*u_sam*2*R/mueLam;
+
+  dfloat yi = bc->y;
+  dfloat xi = bc->x;
+
+  wd = R - sqrt(yi*yi + xi*xi);
+  r  = sqrt(yi*yi + xi*xi);
+
+  darcy = 0.316/(pow(Re,0.25));
+  utau  = sqrt(darcy/8.0);
+  sigk  = 0.6;
+  kmax  = 2.5*utau*utau;
+  yplus = max(wd*utau*Re,1.0e-6);
+  yk    = 30.0;
+
+  tke   = kmax*exp(-pow(log10(yplus/yk),2.0)/(2.0*sigk*sigk));
+  tau   = ((R/2)/(5*utau))*(1 - pow(r/R,2));
+
+  bc->s = 0;
+  if (bc->scalarId == 0) bc->s = Tavg;
+  if((bc->scalarId == 1)&&(bc->id == 1)) bc->s = tke;
+  if((bc->scalarId == 2)&&(bc->id == 1)) bc->s = tau;
+}
+

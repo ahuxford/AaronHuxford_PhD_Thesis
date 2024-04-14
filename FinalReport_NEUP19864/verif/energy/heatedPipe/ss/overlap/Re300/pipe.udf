@@ -1,0 +1,63 @@
+//
+// nekRS User Defined File
+//
+
+#include <math.h>
+#include "udf.hpp"
+#include <iostream>
+
+
+/* User Functions */
+
+static dfloat rho, mueLam;
+
+occa::kernel heatKernel;
+occa::kernel gravityKernel;
+
+void userf(nrs_t *nrs, dfloat time, occa::memory o_U, occa::memory o_FU)
+{
+  mesh_t* mesh = nrs->meshV;
+  gravityKernel(
+    mesh->Nlocal,
+    nrs->fieldOffset,
+    nrs->meshV->o_y,
+    nrs->cds->o_S,
+    nrs->o_U,
+    o_FU);
+}
+
+
+void userq(nrs_t *nrs, dfloat time, occa::memory o_S, occa::memory o_FS)
+{
+  mesh_t* mesh = nrs->meshV;
+  heatKernel(
+    mesh->Nlocal,
+    nrs->fieldOffset,
+    nrs->meshV->o_y,
+    nrs->cds->o_S,
+    o_FS);
+}
+
+void uservp(nrs_t *nrs, dfloat time, occa::memory o_U, occa::memory o_S,
+            occa::memory o_UProp, occa::memory o_SProp)
+{
+}
+
+void UDF_LoadKernels(occa::properties& kernelInfo)
+{
+  gravityKernel = oudfBuildKernel(kernelInfo, "gravity");
+  heatKernel = oudfBuildKernel(kernelInfo, "heat");
+}
+
+void UDF_Setup(nrs_t *nrs)
+{
+
+  auto mesh = nrs->cds->mesh[0];
+
+  udf.uEqnSource = &userf; // gravity source for velocity
+  udf.sEqnSource = &userq; // heat source for temperature scalar
+}
+
+void UDF_ExecuteStep(nrs_t *nrs, dfloat time, int tstep)
+{
+}

@@ -1,0 +1,31 @@
+[OCCA]
+backend = CPU
+deviceNumber = LOCAL-RANK
+
+[GENERAL]
+startFrom = rst.fld
+
+polynomialOrder = 3
+
+dt = 1e-03
+
+numSteps = 2000
+writeInterval = 100
+
+timeStepper = bdf1
+subCyclingSteps = 2
+
+[PRESSURE]
+residualTol = 1e-6
+
+[VELOCITY]
+boundaryTypeMap = v, O, W 
+residualTol = 1e-7
+density = 1.0
+viscosity = 1e-3
+
+[TEMPERATURE]
+boundaryTypeMap = t, O, I
+residualTol = 1e-7
+rhoCp = 1.0
+conductivity = 1e-3

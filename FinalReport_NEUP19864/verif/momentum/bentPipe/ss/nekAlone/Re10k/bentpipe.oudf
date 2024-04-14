@@ -1,0 +1,48 @@
+// Boundary conditions
+/* inflow 1, outflow 2, wall 3 */
+
+#include <iostream>
+
+
+void velocityDirichletConditions(bcData *bc)
+{
+
+  bc->u = 0.0;
+  bc->v = 0.0;
+  bc->w = -0.14848;
+
+}
+
+void scalarDirichletConditions(bcData *bc)
+{
+  dfloat wd, r, Re, darcy, utau, sigk, kmax, yplus, yk, tke, tau;
+
+  dfloat u_sam  = 0.14848;
+  dfloat rho    = 9.9756100e02;  
+  dfloat mueLam = 8.8871000e-04;
+  dfloat R      = 0.03; // radius of pipe
+
+  Re = rho*u_sam*2*R/mueLam;
+
+  dfloat yi = bc->y;
+  dfloat xi = bc->x;
+
+  wd = R - sqrt(yi*yi + xi*xi);
+  r  = sqrt(yi*yi + xi*xi);
+  
+  darcy = 0.316/(pow(Re,0.25));
+  utau  = sqrt(darcy/8.0);
+  sigk  = 0.6;
+  kmax  = 2.5*utau*utau;
+  yplus = max(wd*utau*Re,1.0e-6);
+  yk    = 30.0;
+
+  tke   = kmax*exp(-pow(log10(yplus/yk),2.0)/(2.0*sigk*sigk));
+  tau   = yplus/(10.0*utau*utau*Re);
+
+  bc->s = 0;
+  if (bc->scalarId == 0) bc->s = 1.0;
+  if((bc->scalarId == 1)&&(bc->id == 1)) bc->s = tke;
+  if((bc->scalarId == 2)&&(bc->id == 1)) bc->s = tau;
+}
+

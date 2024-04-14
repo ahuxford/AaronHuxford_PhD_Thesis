@@ -1,0 +1,41 @@
+#!/bin/bash
+#PBS -N pipe
+#PBS -l select=2:ncpus=48:mpiprocs=48
+#PBS -l walltime=02:00:00
+#PBS -j oe
+#PBS -k doe
+#PBS -P neams
+#PBS -m abe
+#PBS -M vbc5085@psu.edu
+
+case=pipe
+
+cd $PBS_O_WORKDIR
+NHOSTS=`cat $PBS_NODEFILE | wc -l`
+
+source /etc/profile.d/modules.sh
+module purge
+#module load impi
+#module load intel-mpi/2019.0.117-intel-19.0.5-cydt
+#module load openmpi/4.0.2-gcc-9.2.0-cuda-10.1-5xzs
+#module load openmpi/4.0.2-gcc-8.4.0-xkgo
+module load intel/19.0.5-gcc-9.2.0-kl4p
+module load intel-mpi/2018.5.288-intel-19.0.5-alnu
+#module load mpt/2.20
+
+#mpirun ./myprog
+
+echo $case     >  SESSION.NAME
+echo `pwd`'/' >>  SESSION.NAME
+touch $case.rea
+rm -f ioinfo  logfile1 logfile
+
+mpiexec ./nek5000 > $case.output
+#mpiexec_mpt ./nek5000 > $case.output
+
+wait 1
+
+
+exit $?
+
+

@@ -1,0 +1,30 @@
+// Boundary conditions
+/* inflow 1, outflow 2, wall 3 */
+
+#include <iostream>
+
+
+void velocityDirichletConditions(bcData *bc)
+{
+
+  dfloat yi = bc->y;
+  dfloat zi = bc->z;
+
+  dfloat rsq  = yi*yi + zi*zi;
+
+
+  dfloat Rsq  = 0.05*0.05; // R^2
+  dfloat Uavg  = 1.0;
+
+ 
+  bc->u = 2*Uavg*(1-rsq/Rsq);
+  bc->v = 0.0;
+  bc->w = 0.0;
+}
+
+void scalarDirichletConditions(bcData *bc)
+{
+  bc->s = 0;
+  if (bc->scalarId == 0) bc->s = 1.0; // temperature
+}
+

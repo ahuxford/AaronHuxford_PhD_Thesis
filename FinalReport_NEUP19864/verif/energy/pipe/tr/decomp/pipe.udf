@@ -1,0 +1,66 @@
+//
+// nekRS User Defined File
+//
+
+#include <math.h>
+#include "udf.hpp"
+#include <iostream>
+
+
+/* User Functions */
+
+static dfloat rho, mueLam;
+
+void userq(nrs_t *nrs, dfloat time, occa::memory o_S, occa::memory o_FS)
+{
+}
+
+void uservp(nrs_t *nrs, dfloat time, occa::memory o_U, occa::memory o_S,
+            occa::memory o_UProp, occa::memory o_SProp)
+{
+}
+
+void UDF_LoadKernels(nrs_t *nrs)
+{
+}
+
+void UDF_Setup(nrs_t *nrs)
+{
+
+  auto mesh = nrs->cds->mesh[0];
+
+
+// initial conditions
+  int n_gll_points = mesh->Np * mesh->Nelements;
+
+  for (int n = 0; n < n_gll_points; ++n)
+  {
+
+// start from rst file, except for temp just set to 0
+
+//    dfloat yi = mesh->y[n];
+//    dfloat zi = mesh->z[n];
+//  
+//    dfloat rsq  = yi*yi + zi*zi;
+//  
+//    dfloat Rsq  = 0.05*0.05; // R^2
+//    dfloat Uavg  = 1.0;
+//  
+//
+//    nrs->U[n + 0 * nrs->fieldOffset] = 2*Uavg*(1-rsq/Rsq); //x-velocity
+//    nrs->U[n + 1 * nrs->fieldOffset] = 0.0;  // y-velocity
+//    nrs->U[n + 2 * nrs->fieldOffset] = 0.0;  // z-velocity
+//
+//    nrs->P[n] = 0.0; // pressure
+
+    nrs->cds->S[n + 0 * nrs->cds->fieldOffset[0]] = 0.0; //temperature
+
+  }
+
+
+
+}
+
+void UDF_ExecuteStep(nrs_t *nrs, dfloat time, int tstep)
+{
+}

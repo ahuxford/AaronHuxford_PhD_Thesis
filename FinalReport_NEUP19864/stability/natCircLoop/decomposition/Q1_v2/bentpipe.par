@@ -1,0 +1,44 @@
+[OCCA]
+backend = CPU
+deviceNumber = LOCAL-RANK
+
+[GENERAL]
+startFrom = rst.fld
+polynomialOrder = 3
+
+writeInterval = 0
+numSteps = 1000
+
+dt = 2e-4
+timeStepper = tombo1
+
+[PROBLEMTYPE]
+equation = incompNS
+stressFormulation = true # required for variable viscosity
+
+[PRESSURE]
+residualTol = 1e-4+relative
+
+[VELOCITY]
+boundaryTypeMap = v, O, W
+residualTol = 1e-5+relative
+density = 769.02
+viscosity = 9.7512e-5
+
+[TEMPERATURE]
+boundaryTypeMap = t, I, I
+residualTol = 1e-5+relative
+rhoCp = 3.875e6
+conductivity = 0.60045
+
+[SCALAR01] # k
+boundaryTypeMap = t, I, t
+residualTol = 1e-5+relative
+rho = 769.02
+diffusivity = 9.7512e-5
+
+[SCALAR02] # tau
+boundaryTypeMap = t, I, t
+residualTol = 1e-5+relative
+rho = 769.02
+diffusivity = 9.7512e-5
