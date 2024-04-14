@@ -33,15 +33,14 @@ All files associated with Aaron Huxford's PhD Thesis work. Please read the entir
 ## SupportingFiles
 - custom MOOSE postprocessor required for SAM-STARCCM+ coupling
 
-## CouplingVideos
-- Directory with files utilized to create coupled STH/CFD videos of several validation efforts.
-- Links to the videos on YouTube (unlisted):
+## CouplingVideos (not a directory)
+- Links to STH/CFD coupled videos on YouTube (unlisted) for several validation transients:
   - Double T-Junction, SAM-NekRS coupling: https://youtu.be/WynSBclF72E
   - TALL-3D TG03.S301.04, SAM-STARCCM+ coupling: https://youtu.be/-BBPfzp9wLs
   - TALL-3D TG03.S301.03, SAM-STARCCM+ coupling: https://youtu.be/HYga87JkSVQ
 
-
 ## FilesTooBigForGithub (not a directory)
 - Link to Google Drive folder that hosts large files that are too big for Github.
   - https://drive.google.com/drive/folders/10TqiXcjPNpuftKBO63dpykGxkXoB_cL9?usp=sharing
-- This is mainly starccm .sim files, that contain their mesh so they're large
+- This is all starccm .sim files, that contain their mesh so they're large
+
