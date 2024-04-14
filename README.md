@@ -30,7 +30,7 @@ All files associated with Aaron Huxford's PhD Thesis work. Please read the entir
 ## Thesis_ABTR
 
 ## SupportingFiles
-- custom MOOSE postprocessor utilized for SAM-STARCCM+ coupling
+- custom MOOSE postprocessor required for SAM-STARCCM+ coupling
 
 ## CouplingVideos
 - Directory with files utilized to create coupled STH/CFD videos of several validation efforts.
