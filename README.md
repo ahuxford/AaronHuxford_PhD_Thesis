@@ -17,7 +17,7 @@ All files associated with Aaron Huxford's PhD Thesis work. Please read the entir
 ## JournalPaper_TALL3D
 - Directory with files utilized to publish "Validation of a Hybrid Domain Overlapping Coupling Between SAM and CFD Against the TALL-3D Transients"
 - DOI link:
-  - **Accepted as of May 2 2024, going through publishing**
+  - https://doi.org/10.1080/00295450.2024.2352665
 - Links to Overleaf:
   - https://www.overleaf.com/read/kvjhqpyrfftv#283a66
   - https://www.overleaf.com/read/frwjzpfgqkmf#01cf59
